@@ -17,7 +17,7 @@ import (
 	"time"
 )
 
-func bar() {
+fn bar() {
 	fmt.Println(time.Now())
 }`
 

@@ -26,11 +26,11 @@ type p = token.Pos
 const bad = token.NoPos
 
 //line fake.go:42:11
-func ok(pos p) bool {
+fn ok(pos p) bool {
 	return pos != bad
 }
 
-/*line :7:9*/func main() {
+/*line :7:9*/fn main() {
 	fmt.Println(ok(bad) == bad.IsValid())
 }
 `
@@ -52,7 +52,7 @@ func ok(pos p) bool {
 		absPosition := fset.PositionFor(pos, false)
 
 		// Either a FuncDecl or GenDecl, since we exit on error.
-		kind := "func"
+		kind := "fn"
 		if gen, ok := decl.(*ast.GenDecl); ok {
 			kind = gen.Tok.String()
 		}
@@ -72,6 +72,6 @@ func ok(pos p) bool {
 	// main.go:5:1: import
 	// main.go:1:5[main.go:8:1]: type
 	// main.go:3:1[main.go:10:1]: const
-	// fake.go:42:11[main.go:13:1]: func
-	// fake.go:7:9[main.go:17:14]: func
+	// fake.go:42:11[main.go:13:1]: fn
+	// fake.go:7:9[main.go:17:14]: fn
 }

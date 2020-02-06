@@ -16,11 +16,11 @@ func TestIsIdentifier(t *testing.T) {
 		{"Space", " ", false},
 		{"SpaceSuffix", "foo ", false},
 		{"Number", "123", false},
-		{"Keyword", "func", false},
+		{"Keyword", "fn", false},
 
 		{"LettersASCII", "foo", true},
 		{"MixedASCII", "_bar123", true},
-		{"UppercaseKeyword", "Func", true},
+		{"UppercaseKeyword", "Fn", true},
 		{"LettersUnicode", "fóö", true},
 	}
 	for _, test := range tests {
