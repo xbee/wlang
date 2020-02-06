@@ -1,12 +1,10 @@
 package main
 
 import (
-	"ast"
 	"fmt"
-
-	// "github.com/conseweb/wlang"
-	"parser"
-	"token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 )
 
 func main() {
