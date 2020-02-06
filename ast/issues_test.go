@@ -5,18 +5,19 @@
 package ast_test
 
 import (
+	"testing"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/parser"
 	"github.com/xbee/wlang/token"
-	"testing"
 )
 
 func TestIssue33649(t *testing.T) {
 	for _, src := range []string{
-		`package p; func _()`,
-		`package p; func _() {`,
-		`package p; func _() { _ = 0`,
-		`package p; func _() { _ = 0 }`,
+		`package p; fn _()`,
+		`package p; fn _() {`,
+		`package p; fn _() { _ = 0`,
+		`package p; fn _() { _ = 0 }`,
 	} {
 		fset := token.NewFileSet()
 		f, _ := parser.ParseFile(fset, "", src, parser.AllErrors)

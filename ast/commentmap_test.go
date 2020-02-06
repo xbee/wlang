@@ -9,11 +9,12 @@ package ast_test
 import (
 	"bytes"
 	"fmt"
+	"sort"
+	"testing"
+
 	. "github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/parser"
 	"github.com/xbee/wlang/token"
-	"sort"
-	"testing"
 )
 
 const src = `
@@ -44,7 +45,7 @@ var x = 0 // x = 0
 // also associated with x
 
 // f1
-func f1() {
+fn f1() {
 	/* associated with s1 */
 	s1()
 	// also associated with s1
@@ -60,10 +61,10 @@ func f1() {
 // associated with f2
 
 // f2
-func f2() {
+fn f2() {
 }
 
-func f3() {
+fn f3() {
 	i := 1 /* 1 */ + 2 // addition
 	_ = i
 }

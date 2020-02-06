@@ -10,13 +10,14 @@ package printer
 
 import (
 	"bytes"
-	"github.com/xbee/wlang/ast"
-	"github.com/xbee/wlang/token"
 	"math"
 	"strconv"
 	"strings"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 )
 
 // Formatting issues:
@@ -794,9 +795,9 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 		p.print(x)
 
 	case *ast.FuncLit:
-		p.print(x.Type.Pos(), token.FUNC)
+		p.print(x.Type.Pos(), token.FN)
 		// See the comment in funcDecl about how the header size is computed.
-		startCol := p.out.Column - len("func")
+		startCol := p.out.Column - len("fn")
 		p.signature(x.Type.Params, x.Type.Results)
 		p.funcBody(p.distanceFrom(x.Type.Pos(), startCol), blank, x.Body)
 
@@ -941,7 +942,7 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 		p.fieldList(x.Fields, true, x.Incomplete)
 
 	case *ast.FuncType:
-		p.print(token.FUNC)
+		p.print(token.FN)
 		p.signature(x.Params, x.Results)
 
 	case *ast.InterfaceType:
@@ -1704,11 +1705,11 @@ func (p *printer) distanceFrom(startPos token.Pos, startOutCol int) int {
 
 func (p *printer) funcDecl(d *ast.FuncDecl) {
 	p.setComment(d.Doc)
-	p.print(d.Pos(), token.FUNC, blank)
+	p.print(d.Pos(), token.FN, blank)
 	// We have to save startCol only after emitting FUNC; otherwise it can be on a
 	// different line (all whitespace preceding the FUNC is emitted only when the
 	// FUNC is emitted).
-	startCol := p.out.Column - len("func ")
+	startCol := p.out.Column - len("fn ")
 	if d.Recv != nil {
 		p.parameters(d.Recv) // method: print receiver
 		p.print(blank)
@@ -1740,7 +1741,7 @@ func declToken(decl ast.Decl) (tok token.Token) {
 	case *ast.GenDecl:
 		tok = d.Tok
 	case *ast.FuncDecl:
-		tok = token.FUNC
+		tok = token.FN
 	}
 	return
 }
@@ -1766,7 +1767,7 @@ func (p *printer) declList(list []ast.Decl) {
 			}
 			// start a new section if the next declaration is a function
 			// that spans multiple lines (see also issue #19544)
-			p.linebreak(p.lineFor(d.Pos()), min, ignore, tok == token.FUNC && p.numLines(d) > 1)
+			p.linebreak(p.lineFor(d.Pos()), min, ignore, tok == token.FN && p.numLines(d) > 1)
 		}
 		p.decl(d)
 	}

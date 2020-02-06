@@ -7,6 +7,7 @@ package ast_test
 import (
 	"bytes"
 	"fmt"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/format"
 	"github.com/xbee/wlang/parser"
@@ -85,7 +86,7 @@ fn main() {
 	//      6  .  Decls: []ast.Decl (len = 1) {
 	//      7  .  .  0: *ast.FuncDecl {
 	//      8  .  .  .  Name: *ast.Ident {
-	//      9  .  .  .  .  NamePos: 3:6
+	//      9  .  .  .  .  NamePos: 3:4
 	//     10  .  .  .  .  Name: "main"
 	//     11  .  .  .  .  Obj: *ast.Object {
 	//     12  .  .  .  .  .  Kind: func
@@ -94,14 +95,14 @@ fn main() {
 	//     15  .  .  .  .  }
 	//     16  .  .  .  }
 	//     17  .  .  .  Type: *ast.FuncType {
-	//     18  .  .  .  .  Fn: 3:1
+	//     18  .  .  .  .  Func: 3:1
 	//     19  .  .  .  .  Params: *ast.FieldList {
-	//     20  .  .  .  .  .  Opening: 3:10
-	//     21  .  .  .  .  .  Closing: 3:11
+	//     20  .  .  .  .  .  Opening: 3:8
+	//     21  .  .  .  .  .  Closing: 3:9
 	//     22  .  .  .  .  }
 	//     23  .  .  .  }
 	//     24  .  .  .  Body: *ast.BlockStmt {
-	//     25  .  .  .  .  Lbrace: 3:13
+	//     25  .  .  .  .  Lbrace: 3:11
 	//     26  .  .  .  .  List: []ast.Stmt (len = 1) {
 	//     27  .  .  .  .  .  0: *ast.ExprStmt {
 	//     28  .  .  .  .  .  .  X: *ast.CallExpr {
@@ -200,7 +201,7 @@ fn main() {
 	// const hello = "Hello, World!" // line comment 1
 	//
 	// // This comment is associated with the main function.
-	// func main() {
+	// fn main() {
 	// 	fmt.Println(hello) // line comment 3
 	// }
 }

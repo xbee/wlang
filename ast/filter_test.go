@@ -8,11 +8,12 @@ package ast_test
 
 import (
 	"bytes"
+	"testing"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/format"
 	"github.com/xbee/wlang/parser"
 	"github.com/xbee/wlang/token"
-	"testing"
 )
 
 const input = `package p
@@ -20,17 +21,17 @@ const input = `package p
 type t1 struct{}
 type t2 struct{}
 
-func f1() {}
-func f1() {}
-func f2() {}
+fn f1() {}
+fn f1() {}
+fn f2() {}
 
-func (*t1) f1() {}
-func (t1) f1() {}
-func (t1) f2() {}
+fn (*t1) f1() {}
+fn (t1) f1() {}
+fn (t1) f2() {}
 
-func (t2) f1() {}
-func (t2) f2() {}
-func (x *t2) f2() {}
+fn (t2) f1() {}
+fn (t2) f2() {}
+fn (x *t2) f2() {}
 `
 
 // Calling ast.MergePackageFiles with ast.FilterFuncDuplicates
@@ -44,15 +45,15 @@ const golden = `package p
 type t1 struct{}
 type t2 struct{}
 
-func f1() {}
-func f2() {}
+fn f1() {}
+fn f2() {}
 
-func (t1) f1() {}
-func (t1) f2() {}
+fn (t1) f1() {}
+fn (t1) f2() {}
 
-func (t2) f1() {}
+fn (t2) f1() {}
 
-func (x *t2) f2() {}
+fn (x *t2) f2() {}
 `
 
 func TestFilterDuplicates(t *testing.T) {
