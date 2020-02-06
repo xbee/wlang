@@ -5,8 +5,8 @@
 package doc
 
 import (
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 	"internal/lazyregexp"
 	"sort"
 	"strconv"
@@ -46,7 +46,7 @@ func (mset methodSet) set(f *ast.FuncDecl, preserveAST bool) {
 		// A function with the same name has already been registered;
 		// since it has documentation, assume f is simply another
 		// implementation and ignore it. This does not happen if the
-		// caller is using go/build.ScanDir to determine the list of
+		// caller is using github.com/xbee/wlang/build.ScanDir to determine the list of
 		// files implementing a package.
 		return
 	}
@@ -528,7 +528,7 @@ func (r *reader) readFile(src *ast.File) {
 					// common case: single declaration w/o parentheses
 					// (if a single declaration is parenthesized,
 					// create a new fake declaration below, so that
-					// go/doc type declarations always appear w/o
+					// github.com/xbee/wlang/doc type declarations always appear w/o
 					// parentheses)
 					if s, ok := d.Specs[0].(*ast.TypeSpec); ok {
 						r.readType(d, s)

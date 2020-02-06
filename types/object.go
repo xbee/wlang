@@ -7,8 +7,8 @@ package types
 import (
 	"bytes"
 	"fmt"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 )
 
 // An Object describes a named language entity such as a package,

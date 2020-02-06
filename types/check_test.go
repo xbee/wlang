@@ -27,18 +27,18 @@ package types_test
 
 import (
 	"flag"
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/scanner"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"io/ioutil"
 	"regexp"
 	"strings"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var (

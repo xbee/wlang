@@ -81,13 +81,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	"go/ast"
-	"go/build"
-	"go/importer"
-	"go/parser"
-	"go/scanner"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -221,7 +221,7 @@ func parseFiles(dir string, filenames []string) ([]*ast.File, error) {
 		if err != nil {
 			first = err
 			// If we have an error, some files may be nil.
-			// Remove them. (The go/parser always returns
+			// Remove them. (The github.com/xbee/wlang/parser always returns
 			// a possibly partial AST even in the presence
 			// of errors, except if the file doesn't exist
 			// in the first place, in which case it cannot

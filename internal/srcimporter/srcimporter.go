@@ -4,15 +4,15 @@
 
 // Package srcimporter implements importing directly
 // from source files rather than installed packages.
-package srcimporter // import "go/internal/srcimporter"
+package srcimporter // import "github.com/xbee/wlang/internal/srcimporter"
 
 import (
 	"fmt"
-	"go/ast"
-	"go/build"
-	"go/parser"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io"
 	"os"
 	"path/filepath"
@@ -37,7 +37,7 @@ func New(ctxt *build.Context, fset *token.FileSet, packages map[string]*types.Pa
 	return &Importer{
 		ctxt:     ctxt,
 		fset:     fset,
-		sizes:    types.SizesFor(ctxt.Compiler, ctxt.GOARCH), // uses go/types default if GOARCH not found
+		sizes:    types.SizesFor(ctxt.Compiler, ctxt.GOARCH), // uses github.com/xbee/wlang/types default if GOARCH not found
 		packages: packages,
 	}
 }
@@ -137,7 +137,7 @@ func (p *Importer) ImportFrom(path, srcDir string, mode types.ImportMode) (*type
 		return pkg, fmt.Errorf("type-checking package %q failed (%v)", bp.ImportPath, err)
 	}
 	if firstHardErr != nil {
-		// this can only happen if we have a bug in go/types
+		// this can only happen if we have a bug in github.com/xbee/wlang/types
 		panic("package is not safe yet no error was returned")
 	}
 

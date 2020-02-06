@@ -9,12 +9,12 @@ package types_test
 
 import (
 	"fmt"
-	"go/ast"
-	"go/build"
-	"go/importer"
-	"go/parser"
-	"go/scanner"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"io/ioutil"
 	"os"
@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var (
@@ -171,17 +171,17 @@ func TestStdFixed(t *testing.T) {
 		"issue6889.go",   // gc-specific test
 		"issue7746.go",   // large constants - consumes too much memory
 		"issue11362.go",  // canonical import path check
-		"issue16369.go",  // go/types handles this correctly - not an issue
-		"issue18459.go",  // go/types doesn't check validity of //go:xxx directives
-		"issue18882.go",  // go/types doesn't check validity of //go:xxx directives
-		"issue20232.go",  // go/types handles larger constants than gc
-		"issue20529.go",  // go/types does not have constraints on stack size
-		"issue22200.go",  // go/types does not have constraints on stack size
-		"issue22200b.go", // go/types does not have constraints on stack size
-		"issue25507.go",  // go/types does not have constraints on stack size
-		"issue20780.go",  // go/types does not have constraints on stack size
-		"issue31747.go",  // go/types does not have constraints on language level (-lang=go1.12) (see #31793)
-		"issue34329.go",  // go/types does not have constraints on language level (-lang=go1.13) (see #31793)
+		"issue16369.go",  // github.com/xbee/wlang/types handles this correctly - not an issue
+		"issue18459.go",  // github.com/xbee/wlang/types doesn't check validity of //go:xxx directives
+		"issue18882.go",  // github.com/xbee/wlang/types doesn't check validity of //go:xxx directives
+		"issue20232.go",  // github.com/xbee/wlang/types handles larger constants than gc
+		"issue20529.go",  // github.com/xbee/wlang/types does not have constraints on stack size
+		"issue22200.go",  // github.com/xbee/wlang/types does not have constraints on stack size
+		"issue22200b.go", // github.com/xbee/wlang/types does not have constraints on stack size
+		"issue25507.go",  // github.com/xbee/wlang/types does not have constraints on stack size
+		"issue20780.go",  // github.com/xbee/wlang/types does not have constraints on stack size
+		"issue31747.go",  // github.com/xbee/wlang/types does not have constraints on language level (-lang=go1.12) (see #31793)
+		"issue34329.go",  // github.com/xbee/wlang/types does not have constraints on language level (-lang=go1.13) (see #31793)
 		"bug251.go",      // issue #34333 which was exposed with fix for #34151
 	)
 }

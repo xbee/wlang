@@ -7,8 +7,8 @@
 package types
 
 import (
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 )
 
 // isTerminating reports if s is a terminating statement.

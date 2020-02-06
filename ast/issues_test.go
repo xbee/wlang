@@ -5,9 +5,9 @@
 package ast_test
 
 import (
-	"go/ast"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"testing"
 )
 

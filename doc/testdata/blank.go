@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package blank is a go/doc test for the handling of _.
+// Package blank is a github.com/xbee/wlang/doc test for the handling of _.
 // See issue 5397.
 package blank
 

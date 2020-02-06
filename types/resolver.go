@@ -6,9 +6,9 @@ package types
 
 import (
 	"fmt"
-	"go/ast"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 	"sort"
 	"strconv"
 	"strings"
@@ -636,7 +636,7 @@ func pkgName(path string) string {
 
 // dir makes a good-faith attempt to return the directory
 // portion of path. If path is empty, the result is ".".
-// (Per the go/build package dependency tests, we cannot import
+// (Per the github.com/xbee/wlang/build package dependency tests, we cannot import
 // path/filepath and simply use filepath.Dir.)
 func dir(path string) string {
 	if i := strings.LastIndexAny(path, `/\`); i > 0 {

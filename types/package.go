@@ -6,7 +6,7 @@ package types
 
 import (
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 )
 
 // A Package describes a Go package.

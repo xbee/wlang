@@ -7,15 +7,15 @@ package types_test
 import (
 	"flag"
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"path/filepath"
 	"testing"
 	"time"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var benchmark = flag.Bool("b", false, "run benchmarks")
@@ -28,9 +28,9 @@ func TestSelf(t *testing.T) {
 	}
 
 	conf := Config{Importer: importer.Default()}
-	_, err = conf.Check("go/types", fset, files, nil)
+	_, err = conf.Check("github.com/xbee/wlang/types", fset, files, nil)
 	if err != nil {
-		// Importing go/constant doesn't work in the
+		// Importing github.com/xbee/wlang/constant doesn't work in the
 		// build dashboard environment. Don't report an error
 		// for now so that the build remains green.
 		// TODO(gri) fix this

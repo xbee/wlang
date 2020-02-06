@@ -9,21 +9,21 @@
 
 package types_test
 
-// This file shows examples of basic usage of the go/types API.
+// This file shows examples of basic usage of the github.com/xbee/wlang/types API.
 //
-// To locate a Go package, use (*go/build.Context).Import.
+// To locate a Go package, use (*github.com/xbee/wlang/build.Context).Import.
 // To load, parse, and type-check a complete Go program
-// from source, use golang.org/x/tools/go/loader.
+// from source, use golang.org/x/tools/github.com/xbee/wlang/loader.
 
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/format"
-	"go/importer"
-	"go/parser"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/format"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"log"
 	"regexp"
 	"sort"

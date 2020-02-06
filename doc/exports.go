@@ -7,8 +7,8 @@
 package doc
 
 import (
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 )
 
 // filterIdentList removes unexported names from list in place

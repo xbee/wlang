@@ -9,8 +9,8 @@ package parser
 import (
 	"bytes"
 	"errors"
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 	"io"
 	"io/ioutil"
 	"os"

@@ -8,9 +8,9 @@ package types
 
 import (
 	"bytes"
-	"go/ast"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 )
 
 // An operandMode specifies the (addressing) mode of an operand.

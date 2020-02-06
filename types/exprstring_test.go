@@ -5,10 +5,10 @@
 package types_test
 
 import (
-	"go/parser"
+	"github.com/xbee/wlang/parser"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var testExprs = []testEntry{

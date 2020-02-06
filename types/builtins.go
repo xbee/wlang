@@ -7,9 +7,9 @@
 package types
 
 import (
-	"go/ast"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 )
 
 // builtin type-checks a call to the built-in specified by id and
@@ -568,7 +568,7 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 			// TODO(gri) Using derefStructPtr may result in methods being found
 			// that don't actually exist. An error either way, but the error
 			// message is confusing. See: https://play.golang.org/p/al75v23kUy ,
-			// but go/types reports: "invalid argument: x.m is a method value".
+			// but github.com/xbee/wlang/types reports: "invalid argument: x.m is a method value".
 			check.invalidArg(arg0.Pos(), "%s is a method value", arg0)
 			return
 		}

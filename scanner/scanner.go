@@ -11,7 +11,7 @@ package scanner
 import (
 	"bytes"
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"path/filepath"
 	"strconv"
 	"unicode"

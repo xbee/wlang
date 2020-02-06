@@ -5,7 +5,7 @@
 package ast
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"sort"
 	"strconv"
 )

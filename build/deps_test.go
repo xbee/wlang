@@ -216,32 +216,32 @@ var pkgDeps = map[string][]string{
 	},
 
 	// Go parser.
-	"go/ast":     {"L4", "OS", "go/scanner", "go/token"},
-	"go/doc":     {"L4", "OS", "go/ast", "go/token", "regexp", "internal/lazyregexp", "text/template"},
-	"go/parser":  {"L4", "OS", "go/ast", "go/scanner", "go/token"},
-	"go/printer": {"L4", "OS", "go/ast", "go/scanner", "go/token", "text/tabwriter"},
-	"go/scanner": {"L4", "OS", "go/token"},
-	"go/token":   {"L4"},
+	"github.com/xbee/wlang/ast":     {"L4", "OS", "github.com/xbee/wlang/scanner", "github.com/xbee/wlang/token"},
+	"github.com/xbee/wlang/doc":     {"L4", "OS", "github.com/xbee/wlang/ast", "github.com/xbee/wlang/token", "regexp", "internal/lazyregexp", "text/template"},
+	"github.com/xbee/wlang/parser":  {"L4", "OS", "github.com/xbee/wlang/ast", "github.com/xbee/wlang/scanner", "github.com/xbee/wlang/token"},
+	"github.com/xbee/wlang/printer": {"L4", "OS", "github.com/xbee/wlang/ast", "github.com/xbee/wlang/scanner", "github.com/xbee/wlang/token", "text/tabwriter"},
+	"github.com/xbee/wlang/scanner": {"L4", "OS", "github.com/xbee/wlang/token"},
+	"github.com/xbee/wlang/token":   {"L4"},
 
 	"GOPARSER": {
-		"go/ast",
-		"go/doc",
-		"go/parser",
-		"go/printer",
-		"go/scanner",
-		"go/token",
+		"github.com/xbee/wlang/ast",
+		"github.com/xbee/wlang/doc",
+		"github.com/xbee/wlang/parser",
+		"github.com/xbee/wlang/printer",
+		"github.com/xbee/wlang/scanner",
+		"github.com/xbee/wlang/token",
 	},
 
-	"go/format":       {"L4", "GOPARSER", "internal/format"},
+	"github.com/xbee/wlang/format":       {"L4", "GOPARSER", "internal/format"},
 	"internal/format": {"L4", "GOPARSER"},
 
 	// Go type checking.
-	"go/constant":               {"L4", "go/token", "math/big"},
-	"go/importer":               {"L4", "go/build", "go/internal/gccgoimporter", "go/internal/gcimporter", "go/internal/srcimporter", "go/token", "go/types"},
-	"go/internal/gcimporter":    {"L4", "OS", "go/build", "go/constant", "go/token", "go/types", "text/scanner"},
-	"go/internal/gccgoimporter": {"L4", "OS", "debug/elf", "go/constant", "go/token", "go/types", "internal/xcoff", "text/scanner"},
-	"go/internal/srcimporter":   {"L4", "OS", "fmt", "go/ast", "go/build", "go/parser", "go/token", "go/types", "path/filepath"},
-	"go/types":                  {"L4", "GOPARSER", "container/heap", "go/constant"},
+	"github.com/xbee/wlang/constant":               {"L4", "github.com/xbee/wlang/token", "math/big"},
+	"github.com/xbee/wlang/importer":               {"L4", "github.com/xbee/wlang/build", "github.com/xbee/wlang/internal/gccgoimporter", "github.com/xbee/wlang/internal/gcimporter", "github.com/xbee/wlang/internal/srcimporter", "github.com/xbee/wlang/token", "github.com/xbee/wlang/types"},
+	"github.com/xbee/wlang/internal/gcimporter":    {"L4", "OS", "github.com/xbee/wlang/build", "github.com/xbee/wlang/constant", "github.com/xbee/wlang/token", "github.com/xbee/wlang/types", "text/scanner"},
+	"github.com/xbee/wlang/internal/gccgoimporter": {"L4", "OS", "debug/elf", "github.com/xbee/wlang/constant", "github.com/xbee/wlang/token", "github.com/xbee/wlang/types", "internal/xcoff", "text/scanner"},
+	"github.com/xbee/wlang/internal/srcimporter":   {"L4", "OS", "fmt", "github.com/xbee/wlang/ast", "github.com/xbee/wlang/build", "github.com/xbee/wlang/parser", "github.com/xbee/wlang/token", "github.com/xbee/wlang/types", "path/filepath"},
+	"github.com/xbee/wlang/types":                  {"L4", "GOPARSER", "container/heap", "github.com/xbee/wlang/constant"},
 
 	// One of a kind.
 	"archive/tar":                    {"L4", "OS", "syscall", "os/user"},
@@ -271,7 +271,7 @@ var pkgDeps = map[string][]string{
 	"encoding/pem":                   {"L4"},
 	"encoding/xml":                   {"L4", "encoding"},
 	"flag":                           {"L4", "OS"},
-	"go/build":                       {"L4", "OS", "GOPARSER", "internal/goroot", "internal/goversion"},
+	"github.com/xbee/wlang/build":                       {"L4", "OS", "GOPARSER", "internal/goroot", "internal/goversion"},
 	"html":                           {"L4"},
 	"image/draw":                     {"L4", "image/internal/imageutil"},
 	"image/gif":                      {"L4", "compress/lzw", "image/color/palette", "image/draw"},
@@ -450,7 +450,7 @@ var pkgDeps = map[string][]string{
 	},
 	"net/http/httputil": {"L4", "NET", "OS", "context", "net/http", "net/http/internal", "golang.org/x/net/http/httpguts"},
 	"net/http/pprof":    {"L4", "OS", "html/template", "net/http", "runtime/pprof", "runtime/trace"},
-	"net/rpc":           {"L4", "NET", "encoding/gob", "html/template", "net/http", "go/token"},
+	"net/rpc":           {"L4", "NET", "encoding/gob", "html/template", "net/http", "github.com/xbee/wlang/token"},
 	"net/rpc/jsonrpc":   {"L4", "NET", "encoding/json", "net/rpc"},
 }
 

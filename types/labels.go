@@ -5,8 +5,8 @@
 package types
 
 import (
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 )
 
 // labels checks correct label use in body.

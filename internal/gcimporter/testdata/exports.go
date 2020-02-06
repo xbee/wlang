@@ -7,7 +7,7 @@
 
 package exports
 
-import "go/ast"
+import "github.com/xbee/wlang/ast"
 
 // Issue 3682: Correctly read dotted identifiers from export data.
 const init1 = 0

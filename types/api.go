@@ -29,9 +29,9 @@ package types
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 )
 
 // An Error describes a type-checking error; it implements the error interface.
@@ -68,7 +68,7 @@ type ImportMode int
 
 // An ImporterFrom resolves import paths to packages; it
 // supports vendoring per https://golang.org/s/go15vendor.
-// Use go/importer to obtain an ImporterFrom implementation.
+// Use github.com/xbee/wlang/importer to obtain an ImporterFrom implementation.
 type ImporterFrom interface {
 	// Importer is present for backward-compatibility. Calling
 	// Import(path) is the same as calling ImportFrom(path, "", 0);

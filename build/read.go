@@ -62,7 +62,7 @@ func (r *importReader) readByte() byte {
 func (r *importReader) peekByte(skipSpace bool) byte {
 	if r.err != nil {
 		if r.nerr++; r.nerr > 10000 {
-			panic("go/build: import reader looping")
+			panic("github.com/xbee/wlang/build: import reader looping")
 		}
 		return 0
 	}
@@ -235,7 +235,7 @@ func readImports(f io.Reader, reportSyntaxError bool, imports *[]string) ([]byte
 	}
 
 	// If we stopped for a syntax error, consume the whole file so that
-	// we are sure we don't change the errors that go/parser returns.
+	// we are sure we don't change the errors that github.com/xbee/wlang/parser returns.
 	if r.err == errSyntax && !reportSyntaxError {
 		r.err = nil
 		for r.err == nil && !r.eof {

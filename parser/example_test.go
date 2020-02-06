@@ -6,8 +6,8 @@ package parser_test
 
 import (
 	"fmt"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 )
 
 func ExampleParseFile() {

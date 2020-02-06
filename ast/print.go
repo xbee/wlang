@@ -8,7 +8,7 @@ package ast
 
 import (
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"io"
 	"os"
 	"reflect"

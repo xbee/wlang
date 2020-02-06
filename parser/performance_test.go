@@ -5,7 +5,7 @@
 package parser
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"io/ioutil"
 	"testing"
 )

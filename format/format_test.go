@@ -6,8 +6,8 @@ package format
 
 import (
 	"bytes"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"io/ioutil"
 	"strings"
 	"testing"
@@ -75,7 +75,7 @@ func TestSource(t *testing.T) {
 // The formatted result must look the same as the input for successful tests.
 var tests = []string{
 	// declaration lists
-	`import "go/format"`,
+	`import "github.com/xbee/wlang/format"`,
 	"var x int",
 	"var x int\n\ntype T struct{}",
 

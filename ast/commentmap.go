@@ -7,7 +7,7 @@ package ast
 import (
 	"bytes"
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"sort"
 )
 

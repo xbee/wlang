@@ -5,7 +5,7 @@
 package importer
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"io"
 	"io/ioutil"

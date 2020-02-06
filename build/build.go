@@ -8,10 +8,10 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"go/ast"
-	"go/doc"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/doc"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"internal/goroot"
 	"internal/goversion"
 	"io"
@@ -1008,7 +1008,7 @@ var errNoModules = errors.New("not using modules")
 // If using the go command is not appropriate, importGo returns errNoModules.
 // Otherwise, importGo tries using the go command and reports whether that succeeded.
 // Using the go command lets build.Import and build.Context.Import find code
-// in Go modules. In the long term we want tools to use go/packages (currently golang.org/x/tools/go/packages),
+// in Go modules. In the long term we want tools to use github.com/xbee/wlang/packages (currently golang.org/x/tools/github.com/xbee/wlang/packages),
 // which will also use the go command.
 // Invoking the go command here is not very efficient in that it computes information
 // about the requested package and all dependencies and then only reports about the requested package.
@@ -1042,7 +1042,7 @@ func (ctxt *Context) importGo(p *Package, path, srcDir string, mode ImportMode) 
 		if filepath.IsAbs(srcDir) {
 			absSrcDir = srcDir
 		} else if ctxt.Dir != "" {
-			return fmt.Errorf("go/build: Dir is non-empty, so relative srcDir is not allowed: %v", srcDir)
+			return fmt.Errorf("github.com/xbee/wlang/build: Dir is non-empty, so relative srcDir is not allowed: %v", srcDir)
 		} else {
 			// Find the absolute source directory. hasSubdir does not handle
 			// relative paths (and can't because the callbacks don't support this).
@@ -1126,12 +1126,12 @@ func (ctxt *Context) importGo(p *Package, path, srcDir string, mode ImportMode) 
 	)
 
 	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("go/build: go list %s: %v\n%s\n", path, err, stderr.String())
+		return fmt.Errorf("github.com/xbee/wlang/build: go list %s: %v\n%s\n", path, err, stderr.String())
 	}
 
 	f := strings.SplitN(stdout.String(), "\n", 5)
 	if len(f) != 5 {
-		return fmt.Errorf("go/build: importGo %s: unexpected output:\n%s\n", path, stdout.String())
+		return fmt.Errorf("github.com/xbee/wlang/build: importGo %s: unexpected output:\n%s\n", path, stdout.String())
 	}
 	dir := f[0]
 	errStr := strings.TrimSpace(f[4])

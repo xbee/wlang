@@ -7,9 +7,9 @@ package gcimporter
 import (
 	"encoding/binary"
 	"fmt"
-	"go/constant"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"sort"
 	"strconv"
 	"strings"
@@ -187,7 +187,7 @@ func (p *importer) pkg() *types.Package {
 		path = p.string()
 	}
 	if p.version >= 6 {
-		p.int() // package height; unused by go/types
+		p.int() // package height; unused by github.com/xbee/wlang/types
 	}
 
 	// we should never see an empty package name
@@ -769,7 +769,7 @@ func (p *importer) float() constant.Value {
 	}
 
 	// convert to little endian
-	// TODO(gri) go/constant should have a more direct conversion function
+	// TODO(gri) github.com/xbee/wlang/constant should have a more direct conversion function
 	//           (e.g., once it supports a big.Float based implementation)
 	for i, j := 0, len(mant)-1; i < j; i, j = i+1, j-1 {
 		mant[i], mant[j] = mant[j], mant[i]

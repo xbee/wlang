@@ -11,10 +11,10 @@ package format
 
 import (
 	"bytes"
-	"go/ast"
-	"go/parser"
-	"go/printer"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/printer"
+	"github.com/xbee/wlang/token"
 	"strings"
 )
 

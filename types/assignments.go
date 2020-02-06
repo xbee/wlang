@@ -7,8 +7,8 @@
 package types
 
 import (
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 )
 
 // assignment reports whether x can be assigned to a variable of type T,

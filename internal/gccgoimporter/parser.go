@@ -8,9 +8,9 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"go/constant"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io"
 	"strconv"
 	"strings"
@@ -874,7 +874,7 @@ func (p *parser) parseTypeSpec(pkg *types.Package, nlist []interface{}) types.Ty
 }
 
 const (
-	// From gofrontend/go/export.h
+	// From gofrontend/github.com/xbee/wlang/export.h
 	// Note that these values are negative in the gofrontend and have been made positive
 	// in the gccgoimporter.
 	gccgoBuiltinINT8       = 1

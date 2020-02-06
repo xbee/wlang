@@ -7,8 +7,8 @@
 package types
 
 import (
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 	"strings"
 )
 

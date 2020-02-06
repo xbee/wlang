@@ -6,12 +6,12 @@ package types_test
 
 import (
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var builtinCalls = []struct {

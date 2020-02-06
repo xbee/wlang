@@ -8,14 +8,14 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"io/ioutil"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 var (

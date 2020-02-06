@@ -7,9 +7,9 @@ package format_test
 import (
 	"bytes"
 	"fmt"
-	"go/format"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/format"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"log"
 )
 

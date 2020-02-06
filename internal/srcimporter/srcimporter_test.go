@@ -5,9 +5,9 @@
 package srcimporter
 
 import (
-	"go/build"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"internal/testenv"
 	"io/ioutil"
 	"path"
@@ -95,7 +95,7 @@ var importedObjectTests = []struct {
 }{
 	{"flag.Bool", "func Bool(name string, value bool, usage string) *bool"},
 	{"io.Reader", "type Reader interface{Read(p []byte) (n int, err error)}"},
-	{"io.ReadWriter", "type ReadWriter interface{Reader; Writer}"}, // go/types.gcCompatibilityMode is off => interface not flattened
+	{"io.ReadWriter", "type ReadWriter interface{Reader; Writer}"}, // github.com/xbee/wlang/types.gcCompatibilityMode is off => interface not flattened
 	{"math.Pi", "const Pi untyped float"},
 	{"math.Sin", "func Sin(x float64) float64"},
 	{"math/big.Int", "type Int struct{neg bool; abs nat}"},
@@ -193,7 +193,7 @@ func TestIssue20855(t *testing.T) {
 		t.Skip("no source code available")
 	}
 
-	pkg, err := importer.ImportFrom("go/internal/srcimporter/testdata/issue20855", ".", 0)
+	pkg, err := importer.ImportFrom("github.com/xbee/wlang/internal/srcimporter/testdata/issue20855", ".", 0)
 	if err == nil || !strings.Contains(err.Error(), "missing function body") {
 		t.Fatalf("got unexpected or no error: %v", err)
 	}
@@ -230,5 +230,5 @@ func TestIssue23092(t *testing.T) {
 
 // TestIssue24392 tests imports against a path containing 'testdata'.
 func TestIssue24392(t *testing.T) {
-	testImportPath(t, "go/internal/srcimporter/testdata/issue24392")
+	testImportPath(t, "github.com/xbee/wlang/internal/srcimporter/testdata/issue24392")
 }

@@ -11,9 +11,9 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"go/constant"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io"
 	"sort"
 )
@@ -117,7 +117,7 @@ func iImportData(fset *token.FileSet, imports map[string]*types.Package, data []
 		pkgPathOff := r.uint64()
 		pkgPath := p.stringAt(pkgPathOff)
 		pkgName := p.stringAt(r.uint64())
-		_ = r.uint64() // package height; unused by go/types
+		_ = r.uint64() // package height; unused by github.com/xbee/wlang/types
 
 		if pkgPath == "" {
 			pkgPath = path
@@ -400,7 +400,7 @@ func (r *importReader) mpint(b *types.Basic) constant.Value {
 	io.ReadFull(&r.declReader, buf)
 
 	// convert to little endian
-	// TODO(gri) go/constant should have a more direct conversion function
+	// TODO(gri) github.com/xbee/wlang/constant should have a more direct conversion function
 	//           (e.g., once it supports a big.Float based implementation)
 	for i, j := 0, len(buf)-1; i < j; i, j = i+1, j-1 {
 		buf[i], buf[j] = buf[j], buf[i]

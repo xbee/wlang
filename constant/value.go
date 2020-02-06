@@ -14,7 +14,7 @@ package constant
 
 import (
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"math"
 	"math/big"
 	"strconv"

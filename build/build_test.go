@@ -127,8 +127,8 @@ func TestLocalDirectory(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if p.ImportPath != "go/build" {
-		t.Fatalf("ImportPath=%q, want %q", p.ImportPath, "go/build")
+	if p.ImportPath != "github.com/xbee/wlang/build" {
+		t.Fatalf("ImportPath=%q, want %q", p.ImportPath, "github.com/xbee/wlang/build")
 	}
 }
 
@@ -301,8 +301,8 @@ func TestShellSafety(t *testing.T) {
 		{"-I/tmp -I/tmp", "/tmp2", "-I/tmp -I/tmp", true},
 		{"-I/tmp", "/tmp/[0]", "-I/tmp", true},
 		{"-I${SRCDIR}/dir", "/tmp/[0]", "-I/tmp/[0]/dir", false},
-		{"-I${SRCDIR}/dir", "/tmp/go go", "-I/tmp/go go/dir", true},
-		{"-I${SRCDIR}/dir dir", "/tmp/go", "-I/tmp/go/dir dir", true},
+		{"-I${SRCDIR}/dir", "/tmp/go go", "-I/tmp/go github.com/xbee/wlang/dir", true},
+		{"-I${SRCDIR}/dir dir", "/tmp/go", "-I/tmp/github.com/xbee/wlang/dir dir", true},
 	}
 	for _, test := range tests {
 		output, ok := expandSrcDir(test.input, test.srcdir)
@@ -335,10 +335,10 @@ func TestImportDirNotExist(t *testing.T) {
 		path, srcDir string
 		mode         ImportMode
 	}{
-		{"Import(full, 0)", "go/build/doesnotexist", "", 0},
-		{"Import(local, 0)", "./doesnotexist", filepath.Join(ctxt.GOROOT, "src/go/build"), 0},
-		{"Import(full, FindOnly)", "go/build/doesnotexist", "", FindOnly},
-		{"Import(local, FindOnly)", "./doesnotexist", filepath.Join(ctxt.GOROOT, "src/go/build"), FindOnly},
+		{"Import(full, 0)", "github.com/xbee/wlang/build/doesnotexist", "", 0},
+		{"Import(local, 0)", "./doesnotexist", filepath.Join(ctxt.GOROOT, "src/github.com/xbee/wlang/build"), 0},
+		{"Import(full, FindOnly)", "github.com/xbee/wlang/build/doesnotexist", "", FindOnly},
+		{"Import(local, FindOnly)", "./doesnotexist", filepath.Join(ctxt.GOROOT, "src/github.com/xbee/wlang/build"), FindOnly},
 	}
 
 	defer os.Setenv("GO111MODULE", os.Getenv("GO111MODULE"))
@@ -367,8 +367,8 @@ func TestImportDirNotExist(t *testing.T) {
 					t.Fatalf(`%s got nil p, want non-nil *Package`, test.label)
 				}
 				// Verify partial information in p.
-				if p.ImportPath != "go/build/doesnotexist" {
-					t.Errorf(`%s got p.ImportPath: %q, want "go/build/doesnotexist"`, test.label, p.ImportPath)
+				if p.ImportPath != "github.com/xbee/wlang/build/doesnotexist" {
+					t.Errorf(`%s got p.ImportPath: %q, want "github.com/xbee/wlang/build/doesnotexist"`, test.label, p.ImportPath)
 				}
 			}
 		})
@@ -500,7 +500,7 @@ func TestImportDirTarget(t *testing.T) {
 	}
 }
 
-// TestIssue23594 prevents go/build from regressing and populating Package.Doc
+// TestIssue23594 prevents github.com/xbee/wlang/build from regressing and populating Package.Doc
 // from comments in test files.
 func TestIssue23594(t *testing.T) {
 	// Package testdata/doc contains regular and external test files

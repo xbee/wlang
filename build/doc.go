@@ -27,7 +27,7 @@
 // If DIR is a directory listed in the Go path, a package with
 // source in DIR/src/foo/bar can be imported as "foo/bar" and
 // has its compiled form installed to "DIR/pkg/GOOS_GOARCH/foo/bar.a"
-// (or, for gccgo, "DIR/pkg/gccgo/foo/libbar.a").
+// (or, for gccgo, "DIR/pkg/gccgithub.com/xbee/wlang/foo/libbar.a").
 //
 // The bin/ directory holds compiled commands.
 // Each command is named for its source directory, but only

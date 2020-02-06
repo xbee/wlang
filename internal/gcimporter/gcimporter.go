@@ -3,14 +3,14 @@
 // license that can be found in the LICENSE file.
 
 // Package gcimporter implements Import for gc-generated object files.
-package gcimporter // import "go/internal/gcimporter"
+package gcimporter // import "github.com/xbee/wlang/internal/gcimporter"
 
 import (
 	"bufio"
 	"fmt"
-	"go/build"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io"
 	"io/ioutil"
 	"os"
@@ -56,7 +56,7 @@ func FindPkg(path, srcDir string) (filename, id string) {
 		id = noext
 
 	case filepath.IsAbs(path):
-		// for completeness only - go/build.Import
+		// for completeness only - github.com/xbee/wlang/build.Import
 		// does not support absolute imports
 		// "/x" -> "/x.ext", "/x"
 		noext = path

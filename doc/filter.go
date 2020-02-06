@@ -4,7 +4,7 @@
 
 package doc
 
-import "go/ast"
+import "github.com/xbee/wlang/ast"
 
 type Filter func(string) bool
 

@@ -5,14 +5,14 @@
 package types_test
 
 import (
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 const filename = "<src>"

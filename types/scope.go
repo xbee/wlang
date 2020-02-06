@@ -9,7 +9,7 @@ package types
 import (
 	"bytes"
 	"fmt"
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"io"
 	"sort"
 	"strings"

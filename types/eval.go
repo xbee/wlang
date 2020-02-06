@@ -6,9 +6,9 @@ package types
 
 import (
 	"fmt"
-	"go/ast"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 )
 
 // Eval returns the type and, if constant, the value for the

@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 )
 
 // skipSpecialPlatforms causes the test to be skipped for platforms where
@@ -128,7 +128,7 @@ func TestImportTestdata(t *testing.T) {
 		// TODO(gri) update the want list to be precise, now that
 		// the textual export data is gone.
 		got := fmt.Sprint(pkg.Imports())
-		for _, want := range []string{"go/ast", "go/token"} {
+		for _, want := range []string{"github.com/xbee/wlang/ast", "github.com/xbee/wlang/token"} {
 			if !strings.Contains(got, want) {
 				t.Errorf(`Package("exports").Imports() = %s, does not contain %s`, got, want)
 			}
@@ -241,13 +241,13 @@ var importedObjectTests = []struct {
 }{
 	// non-interfaces
 	{"crypto.Hash", "type Hash uint"},
-	{"go/ast.ObjKind", "type ObjKind int"},
-	{"go/types.Qualifier", "type Qualifier func(*Package) string"},
-	{"go/types.Comparable", "func Comparable(T Type) bool"},
+	{"github.com/xbee/wlang/ast.ObjKind", "type ObjKind int"},
+	{"github.com/xbee/wlang/types.Qualifier", "type Qualifier func(*Package) string"},
+	{"github.com/xbee/wlang/types.Comparable", "func Comparable(T Type) bool"},
 	{"math.Pi", "const Pi untyped float"},
 	{"math.Sin", "func Sin(x float64) float64"},
-	{"go/ast.NotNilFilter", "func NotNilFilter(_ string, v reflect.Value) bool"},
-	{"go/internal/gcimporter.BImportData", "func BImportData(fset *go/token.FileSet, imports map[string]*go/types.Package, data []byte, path string) (_ int, pkg *go/types.Package, err error)"},
+	{"github.com/xbee/wlang/ast.NotNilFilter", "func NotNilFilter(_ string, v reflect.Value) bool"},
+	{"github.com/xbee/wlang/internal/gcimporter.BImportData", "func BImportData(fset *github.com/xbee/wlang/token.FileSet, imports map[string]*github.com/xbee/wlang/types.Package, data []byte, path string) (_ int, pkg *github.com/xbee/wlang/types.Package, err error)"},
 
 	// interfaces
 	{"context.Context", "type Context interface{Deadline() (deadline time.Time, ok bool); Done() <-chan struct{}; Err() error; Value(key interface{}) interface{}}"},
@@ -255,8 +255,8 @@ var importedObjectTests = []struct {
 	{"encoding.BinaryMarshaler", "type BinaryMarshaler interface{MarshalBinary() (data []byte, err error)}"},
 	{"io.Reader", "type Reader interface{Read(p []byte) (n int, err error)}"},
 	{"io.ReadWriter", "type ReadWriter interface{Reader; Writer}"},
-	{"go/ast.Node", "type Node interface{End() go/token.Pos; Pos() go/token.Pos}"},
-	{"go/types.Type", "type Type interface{String() string; Underlying() Type}"},
+	{"github.com/xbee/wlang/ast.Node", "type Node interface{End() github.com/xbee/wlang/token.Pos; Pos() github.com/xbee/wlang/token.Pos}"},
+	{"github.com/xbee/wlang/types.Type", "type Type interface{String() string; Underlying() Type}"},
 }
 
 func TestImportedTypes(t *testing.T) {
@@ -435,42 +435,42 @@ func TestIssue13898(t *testing.T) {
 		t.Skipf("gc-built packages not available (compiler = %s)", runtime.Compiler)
 	}
 
-	// import go/internal/gcimporter which imports go/types partially
+	// import github.com/xbee/wlang/internal/gcimporter which imports github.com/xbee/wlang/types partially
 	fset := token.NewFileSet()
 	imports := make(map[string]*types.Package)
-	_, err := Import(fset, imports, "go/internal/gcimporter", ".", nil)
+	_, err := Import(fset, imports, "github.com/xbee/wlang/internal/gcimporter", ".", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	// look for go/types package
+	// look for github.com/xbee/wlang/types package
 	var goTypesPkg *types.Package
 	for path, pkg := range imports {
-		if path == "go/types" {
+		if path == "github.com/xbee/wlang/types" {
 			goTypesPkg = pkg
 			break
 		}
 	}
 	if goTypesPkg == nil {
-		t.Fatal("go/types not found")
+		t.Fatal("github.com/xbee/wlang/types not found")
 	}
 
-	// look for go/types.Object type
+	// look for github.com/xbee/wlang/types.Object type
 	obj := lookupObj(t, goTypesPkg.Scope(), "Object")
 	typ, ok := obj.Type().(*types.Named)
 	if !ok {
-		t.Fatalf("go/types.Object type is %v; wanted named type", typ)
+		t.Fatalf("github.com/xbee/wlang/types.Object type is %v; wanted named type", typ)
 	}
 
-	// lookup go/types.Object.Pkg method
+	// lookup github.com/xbee/wlang/types.Object.Pkg method
 	m, index, indirect := types.LookupFieldOrMethod(typ, false, nil, "Pkg")
 	if m == nil {
-		t.Fatalf("go/types.Object.Pkg not found (index = %v, indirect = %v)", index, indirect)
+		t.Fatalf("github.com/xbee/wlang/types.Object.Pkg not found (index = %v, indirect = %v)", index, indirect)
 	}
 
-	// the method must belong to go/types
-	if m.Pkg().Path() != "go/types" {
-		t.Fatalf("found %v; want go/types", m.Pkg())
+	// the method must belong to github.com/xbee/wlang/types
+	if m.Pkg().Path() != "github.com/xbee/wlang/types" {
+		t.Fatalf("found %v; want github.com/xbee/wlang/types", m.Pkg())
 	}
 }
 

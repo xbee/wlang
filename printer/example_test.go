@@ -7,10 +7,10 @@ package printer_test
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/parser"
-	"go/printer"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/printer"
+	"github.com/xbee/wlang/token"
 	"strings"
 	"testing"
 )

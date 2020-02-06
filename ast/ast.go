@@ -8,7 +8,7 @@
 package ast
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"strings"
 )
 
@@ -972,7 +972,7 @@ func (*FuncDecl) declNode() {}
 // via Doc and Comment fields.
 //
 // For correct printing of source code containing comments (using packages
-// go/format and go/printer), special care must be taken to update comments
+// github.com/xbee/wlang/format and github.com/xbee/wlang/printer), special care must be taken to update comments
 // when a File's syntax tree is modified: For printing, comments are interspersed
 // between tokens based on their position. If syntax tree nodes are
 // removed or moved, relevant comments in their vicinity must also be removed

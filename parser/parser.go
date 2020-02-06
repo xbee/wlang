@@ -18,9 +18,9 @@ package parser
 
 import (
 	"fmt"
-	"go/ast"
-	"go/scanner"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
 	"strconv"
 	"strings"
 	"unicode"
@@ -454,7 +454,7 @@ func (p *parser) atComma(context string, follow token.Token) bool {
 
 func assert(cond bool, msg string) {
 	if !cond {
-		panic("go/parser internal error: " + msg)
+		panic("github.com/xbee/wlang/parser internal error: " + msg)
 	}
 }
 
@@ -2279,7 +2279,7 @@ type parseSpecFunction func(doc *ast.CommentGroup, keyword token.Token, iota int
 
 func isValidImport(lit string) bool {
 	const illegalChars = `!"#$%&'()*,:;<=>?[\]^{|}` + "`\uFFFD"
-	s, _ := strconv.Unquote(lit) // go/scanner returns a legal string literal
+	s, _ := strconv.Unquote(lit) // github.com/xbee/wlang/scanner returns a legal string literal
 	for _, r := range s {
 		if !unicode.IsGraphic(r) || unicode.IsSpace(r) || strings.ContainsRune(illegalChars, r) {
 			return false

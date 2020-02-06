@@ -7,8 +7,8 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 	"os"
 	"strings"
 	"testing"

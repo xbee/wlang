@@ -5,8 +5,8 @@
 package issue13742
 
 import (
-	"go/ast"
-	. "go/ast"
+	"github.com/xbee/wlang/ast"
+	. "github.com/xbee/wlang/ast"
 )
 
 // Both F0 and G0 should appear as functions.

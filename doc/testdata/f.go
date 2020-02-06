@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// The package f is a go/doc test for functions and factory methods.
+// The package f is a github.com/xbee/wlang/doc test for functions and factory methods.
 package f
 
 // ----------------------------------------------------------------------------

@@ -6,7 +6,7 @@ package gccgoimporter
 
 import (
 	"bufio"
-	"go/types"
+	"github.com/xbee/wlang/types"
 	"os"
 	"os/exec"
 	"path/filepath"

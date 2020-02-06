@@ -5,7 +5,7 @@
 package gccgoimporter
 
 import (
-	"go/types"
+	"github.com/xbee/wlang/types"
 	"internal/testenv"
 	"io/ioutil"
 	"os"

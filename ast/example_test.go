@@ -7,10 +7,10 @@ package ast_test
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/format"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/format"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 )
 
 // This example demonstrates how to inspect the AST of a Go program.

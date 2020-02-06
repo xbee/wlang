@@ -6,8 +6,8 @@ package constant_test
 
 import (
 	"fmt"
-	"go/constant"
-	"go/token"
+	"github.com/xbee/wlang/constant"
+	"github.com/xbee/wlang/token"
 	"math"
 	"sort"
 )
@@ -34,14 +34,14 @@ func Example_complexNumbers() {
 	C := complex(Ar, Ai)
 
 	fmt.Println("literal", 25.3+55i)
-	fmt.Println("go/constant", c)
+	fmt.Println("github.com/xbee/wlang/constant", c)
 	fmt.Println("complex128", C)
 
 	// Output:
 	//
 	// Could not represent real part 25.3 exactly as float64
 	// literal (25.3+55i)
-	// go/constant (25.3 + 55i)
+	// github.com/xbee/wlang/constant (25.3 + 55i)
 	// complex128 (25.299999999999997+55i)
 }
 

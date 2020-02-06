@@ -2,16 +2,16 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// To avoid a cyclic dependency with go/parser, this file is in a separate package.
+// To avoid a cyclic dependency with github.com/xbee/wlang/parser, this file is in a separate package.
 
 package ast_test
 
 import (
 	"bytes"
 	"fmt"
-	. "go/ast"
-	"go/parser"
-	"go/token"
+	. "github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"sort"
 	"testing"
 )
@@ -26,8 +26,8 @@ package p /* the name is p */
 import (
 	"bytes"     // bytes
 	"fmt"       // fmt
-	"go/ast"
-	"go/parser"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
 )
 
 // T

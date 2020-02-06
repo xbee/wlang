@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package issue12839 is a go/doc test to test association of a function
+// Package issue12839 is a github.com/xbee/wlang/doc test to test association of a function
 // that returns multiple types.
 // See golang.org/issue/12839.
 // (See also golang.org/issue/27928.)

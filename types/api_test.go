@@ -7,17 +7,17 @@ package types_test
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"reflect"
 	"regexp"
 	"strings"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 func pkgFor(path, source string, info *Info) (*Package, error) {
@@ -1218,7 +1218,7 @@ func F(){
 		// Exclude selectors and qualified identifiers---lexical
 		// refs only.  (Ideally, we'd see if the AST parent is a
 		// SelectorExpr, but that requires PathEnclosingInterval
-		// from golang.org/x/tools/go/ast/astutil.)
+		// from golang.org/x/tools/github.com/xbee/wlang/ast/astutil.)
 		if id.Name == "X" {
 			continue
 		}
@@ -1406,7 +1406,7 @@ func TestFailedImport(t *testing.T) {
 	const src = `
 package p
 
-import foo "go/types/thisdirectorymustnotexistotherwisethistestmayfail/foo" // should only see an error here
+import foo "github.com/xbee/wlang/types/thisdirectorymustnotexistotherwisethistestmayfail/foo" // should only see an error here
 
 const c = foo.C
 type T = foo.T

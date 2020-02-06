@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package predeclared is a go/doc test for handling of
+// Package predeclared is a github.com/xbee/wlang/doc test for handling of
 // exported methods on locally-defined predeclared types.
 // See issue 9860.
 package predeclared

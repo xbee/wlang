@@ -6,15 +6,15 @@ package types_test
 
 import (
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
+	"github.com/xbee/wlang/token"
 	"internal/testenv"
 	"sort"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 type resolveTestImporter struct {
@@ -68,7 +68,7 @@ func TestResolveIdents(t *testing.T) {
 		`,
 		`
 		package p
-		import . "go/parser"
+		import . "github.com/xbee/wlang/parser"
 		import "sync"
 		func h() Mode { return ImportsOnly }
 		var _, x int = 1, 2

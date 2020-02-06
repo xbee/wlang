@@ -9,8 +9,8 @@ package printer
 
 import (
 	"bytes"
-	"go/ast"
-	"go/parser"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/parser"
 	"io"
 	"io/ioutil"
 	"log"

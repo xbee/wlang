@@ -6,12 +6,12 @@
 package importer
 
 import (
-	"go/build"
-	"go/internal/gccgoimporter"
-	"go/internal/gcimporter"
-	"go/internal/srcimporter"
-	"go/token"
-	"go/types"
+	"github.com/xbee/wlang/build"
+	"github.com/xbee/wlang/internal/gccgoimporter"
+	"github.com/xbee/wlang/internal/gcimporter"
+	"github.com/xbee/wlang/internal/srcimporter"
+	"github.com/xbee/wlang/token"
+	"github.com/xbee/wlang/types"
 	"io"
 	"runtime"
 )

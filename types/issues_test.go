@@ -9,15 +9,15 @@ package types_test
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/importer"
-	"go/parser"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/parser"
 	"internal/testenv"
 	"sort"
 	"strings"
 	"testing"
 
-	. "go/types"
+	. "github.com/xbee/wlang/types"
 )
 
 func mustParse(t *testing.T, src string) *ast.File {
@@ -200,8 +200,8 @@ L7 uses var z int`
 // This tests that the package associated with the types.Object.Pkg method
 // is the type's package independent of the order in which the imports are
 // listed in the sources src1, src2 below.
-// The actual issue is in go/internal/gcimporter which has a corresponding
-// test; we leave this test here to verify correct behavior at the go/types
+// The actual issue is in github.com/xbee/wlang/internal/gcimporter which has a corresponding
+// test; we leave this test here to verify correct behavior at the github.com/xbee/wlang/types
 // level.
 func TestIssue13898(t *testing.T) {
 	testenv.MustHaveGoBuild(t)
@@ -209,7 +209,7 @@ func TestIssue13898(t *testing.T) {
 	const src0 = `
 package main
 
-import "go/types"
+import "github.com/xbee/wlang/types"
 
 func main() {
 	var info types.Info
@@ -218,13 +218,13 @@ func main() {
 	}
 }
 `
-	// like src0, but also imports go/importer
+	// like src0, but also imports github.com/xbee/wlang/importer
 	const src1 = `
 package main
 
 import (
-	"go/types"
-	_ "go/importer"
+	"github.com/xbee/wlang/types"
+	_ "github.com/xbee/wlang/importer"
 )
 
 func main() {
@@ -240,8 +240,8 @@ func main() {
 package main
 
 import (
-	_ "go/importer"
-	"go/types"
+	_ "github.com/xbee/wlang/importer"
+	"github.com/xbee/wlang/types"
 )
 
 func main() {

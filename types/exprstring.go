@@ -8,7 +8,7 @@ package types
 
 import (
 	"bytes"
-	"go/ast"
+	"github.com/xbee/wlang/ast"
 )
 
 // ExprString returns the (possibly shortened) string representation for x.

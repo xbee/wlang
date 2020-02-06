@@ -5,7 +5,7 @@
 package gccgoimporter
 
 import (
-	"go/types"
+	"github.com/xbee/wlang/types"
 	"testing"
 )
 
@@ -69,14 +69,14 @@ var importablePackages = [...]string{
 	"expvar",
 	"flag",
 	"fmt",
-	"go/ast",
-	"go/build",
-	"go/doc",
-	// "go/format", // Added in GCC 4.8.
-	"go/parser",
-	"go/printer",
-	"go/scanner",
-	"go/token",
+	"github.com/xbee/wlang/ast",
+	"github.com/xbee/wlang/build",
+	"github.com/xbee/wlang/doc",
+	// "github.com/xbee/wlang/format", // Added in GCC 4.8.
+	"github.com/xbee/wlang/parser",
+	"github.com/xbee/wlang/printer",
+	"github.com/xbee/wlang/scanner",
+	"github.com/xbee/wlang/token",
 	"hash/adler32",
 	"hash/crc32",
 	"hash/crc64",

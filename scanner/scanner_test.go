@@ -5,7 +5,7 @@
 package scanner
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"io/ioutil"
 	"os"
 	"path/filepath"

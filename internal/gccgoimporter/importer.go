@@ -3,13 +3,13 @@
 // license that can be found in the LICENSE file.
 
 // Package gccgoimporter implements Import for gccgo-generated object files.
-package gccgoimporter // import "go/internal/gccgoimporter"
+package gccgoimporter // import "github.com/xbee/wlang/internal/gccgoimporter"
 
 import (
 	"bytes"
 	"debug/elf"
 	"fmt"
-	"go/types"
+	"github.com/xbee/wlang/types"
 	"internal/xcoff"
 	"io"
 	"os"

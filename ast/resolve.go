@@ -8,8 +8,8 @@ package ast
 
 import (
 	"fmt"
-	"go/scanner"
-	"go/token"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
 	"strconv"
 )
 

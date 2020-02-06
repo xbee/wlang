@@ -8,8 +8,8 @@ package types
 
 import (
 	"fmt"
-	"go/ast"
-	"go/token"
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/token"
 	"strconv"
 	"strings"
 )

@@ -3,12 +3,12 @@
 // license that can be found in the LICENSE file.
 
 // This file checks invariants of token.Token ordering that we rely on
-// since package go/token doesn't provide any guarantees at the moment.
+// since package github.com/xbee/wlang/token doesn't provide any guarantees at the moment.
 
 package types
 
 import (
-	"go/token"
+	"github.com/xbee/wlang/token"
 	"testing"
 )
 
