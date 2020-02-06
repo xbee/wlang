@@ -42,12 +42,12 @@ type Value /* ERROR "Value already declared through dot-import of package reflec
 
 var _ = fmt.Println // use "fmt"
 
-func _() {
+fn _() {
 	f1.Println() // use "fmt"
 }
 
-func _() {
-	_ = func() {
+fn _() {
+	_ = fn() {
 		f2.Println() // use "fmt"
 	}
 }

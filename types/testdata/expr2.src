@@ -6,7 +6,7 @@
 
 package expr2
 
-func _bool() {
+fn _bool() {
 	const t = true == true
 	const f = true == false
 	_ = t /* ERROR "cannot compare" */ < f
@@ -23,7 +23,7 @@ var (
 	v0 = nil /* ERROR "cannot compare" */ == nil
 )
 
-func arrays() {
+fn arrays() {
 	// basics
 	var a, b [10]int
 	_ = a == b
@@ -39,11 +39,11 @@ func arrays() {
 	var d D
 	_ = c /* ERROR mismatched types */ == d
 
-	var e [10]func() int
+	var e [10]fn() int
 	_ = e /* ERROR == not defined */ == e
 }
 
-func structs() {
+fn structs() {
 	// basics
 	var s, t struct {
 		x int
@@ -77,7 +77,7 @@ func structs() {
 	_ = u /* ERROR cannot compare */ == u
 }
 
-func pointers() {
+fn pointers() {
 	// nil
 	_ = nil /* ERROR == not defined */ == nil
 	_ = nil /* ERROR != not defined */ != nil
@@ -124,7 +124,7 @@ func pointers() {
 	_ = p1 == ps1
 }
 
-func channels() {
+fn channels() {
 	// basics
 	var c, d chan int
 	_ = c == d
@@ -177,12 +177,12 @@ func channels() {
 type S1 struct{}
 type S11 struct{}
 type S2 struct{}
-func (*S1) m() int
-func (*S11) m() int
-func (*S11) n()
-func (*S2) m() float32
+fn (*S1) m() int
+fn (*S11) m() int
+fn (*S11) n()
+fn (*S2) m() float32
 
-func interfaces() {
+fn interfaces() {
 	// basics
 	var i, j interface{ m() int }
 	_ = i == j
@@ -223,7 +223,7 @@ func interfaces() {
 	_ = x /* ERROR cannot compare */ < e
 }
 
-func slices() {
+fn slices() {
 	// basics
 	var s []int
 	_ = s == nil
@@ -235,7 +235,7 @@ func slices() {
 	_ = s /* ERROR < not defined */ < s
 }
 
-func maps() {
+fn maps() {
 	// basics
 	var m map[string]int
 	_ = m == nil
@@ -247,9 +247,9 @@ func maps() {
 	_ = m /* ERROR < not defined */ < m
 }
 
-func funcs() {
+fn funcs() {
 	// basics
-	var f func(int) float32
+	var f fn(int) float32
 	_ = f == nil
 	_ = f != nil
 	_ = f /* ERROR < not defined */ < nil

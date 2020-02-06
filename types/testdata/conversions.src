@@ -16,7 +16,7 @@ var (
 
 // numeric constant conversions are in const1.src.
 
-func string_conversions() {
+fn string_conversions() {
 	const A = string(65)
 	assert(A == "A")
 	const E = string(-1)
@@ -39,7 +39,7 @@ func string_conversions() {
 	_ = string(1 /* ERROR "cannot convert" */ + 2i)
 }
 
-func interface_conversions() {
+fn interface_conversions() {
 	type E interface{}
 
 	type I1 interface{
@@ -86,7 +86,7 @@ func interface_conversions() {
 	// TODO(gri) add more tests, improve error message
 }
 
-func issue6326() {
+fn issue6326() {
 	type T unsafe.Pointer
 	var x T
 	_ = uintptr(x) // see issue 6326

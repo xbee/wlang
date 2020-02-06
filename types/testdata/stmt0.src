@@ -6,13 +6,13 @@
 
 package stmt0
 
-func assignments0() (int, int) {
+fn assignments0() (int, int) {
 	var a, b, c int
 	var ch chan int
-	f0 := func() {}
-	f1 := func() int { return 1 }
-	f2 := func() (int, int) { return 1, 2 }
-	f3 := func() (int, int, int) { return 1, 2, 3 }
+	f0 := fn() {}
+	f1 := fn() int { return 1 }
+	f2 := fn() (int, int) { return 1, 2 }
+	f3 := fn() (int, int, int) { return 1, 2, 3 }
 
 	a, b, c = 1, 2, 3
 	a, b, c = 1 /* ERROR "cannot assign [1-9]+ values to [1-9]+ variables" */ , 2
@@ -35,7 +35,7 @@ func assignments0() (int, int) {
 	return /* ERROR "wrong number of return values" */ 1, 2, 3
 }
 
-func assignments1() {
+fn assignments1() {
 	b, i, f, c, s := false, 1, 1.0, 1i, "foo"
 	b = i /* ERROR "cannot use .* in assignment" */
 	i = f /* ERROR "cannot use .* in assignment" */
@@ -73,18 +73,18 @@ func assignments1() {
 		_ [10]int = nil /* ERROR "untyped nil value" */
 		_ []byte = nil
 		_ struct{} = nil /* ERROR "untyped nil value" */
-		_ func() = nil
+		_ fn() = nil
 		_ map[int]string = nil
 		_ chan int = nil
 	)
 
 	// test cases for issue 5500
-	_ = func() (int, bool) {
+	_ = fn() (int, bool) {
 		var m map[int]int
 		return /* ERROR "wrong number of return values" */ m[0]
 	}
 
-	g := func(int, bool){}
+	g := fn(int, bool){}
 	var m map[int]int
 	g(m[0]) /* ERROR "too few arguments" */
 
@@ -94,7 +94,7 @@ func assignments1() {
 	(_) = 0
 }
 
-func assignments2() {
+fn assignments2() {
 	type mybool bool
 	var m map[string][]bool
 	var s []bool
@@ -127,7 +127,7 @@ func assignments2() {
 	int /* ERROR not an expression */ = 0
 }
 
-func issue6487() {
+fn issue6487() {
 	type S struct{x int}
 	_ = &S /* ERROR "cannot take address" */ {}.x
 	_ = &( /* ERROR "cannot take address" */ S{}.x)
@@ -142,7 +142,7 @@ func issue6487() {
 	_ = &m /* ERROR "cannot take address" */ ["foo"].x
 }
 
-func issue6766a() {
+fn issue6766a() {
 	a, a /* ERROR redeclared */ := 1, 2
 	_ = a
 	a, b, b /* ERROR redeclared */ := 1, 2, 3
@@ -152,7 +152,7 @@ func issue6766a() {
 	a, b := /* ERROR no new variables */ 1, 2
 }
 
-func shortVarDecls1() {
+fn shortVarDecls1() {
 	const c = 0
 	type d int
 	a, b, c /* ERROR "cannot assign" */ , d /* ERROR "cannot assign" */  := 1, "zwei", 3.0, 4
@@ -160,7 +160,7 @@ func shortVarDecls1() {
 	var _ string = b // b is of type string
 }
 
-func incdecs() {
+fn incdecs() {
 	const c = 3.14
 	c /* ERROR "cannot assign" */ ++
 	s := "foo"
@@ -176,7 +176,7 @@ func incdecs() {
 	z++
 }
 
-func sends() {
+fn sends() {
 	var ch chan int
 	var rch <-chan int
 	var x int
@@ -186,7 +186,7 @@ func sends() {
 	ch <- x
 }
 
-func selects() {
+fn selects() {
 	select {}
 	var (
 		ch chan int
@@ -228,7 +228,7 @@ func selects() {
 	}
 }
 
-func gos() {
+fn gos() {
 	go 1 /* ERROR HERE "function must be invoked" */
 	go int /* ERROR "go requires function call, not conversion" */ (0)
 	go gos()
@@ -237,7 +237,7 @@ func gos() {
 	go len /* ERROR "go discards result" */ (c)
 }
 
-func defers() {
+fn defers() {
 	defer 1 /* ERROR HERE "function must be invoked" */
 	defer int /* ERROR "defer requires function call, not conversion" */ (0)
 	defer defers()
@@ -246,7 +246,7 @@ func defers() {
 	defer len /* ERROR "defer discards result" */ (c)
 }
 
-func breaks() {
+fn breaks() {
 	var x, y int
 
 	break /* ERROR "break" */
@@ -306,7 +306,7 @@ func breaks() {
 	}
 }
 
-func continues() {
+fn continues() {
 	var x, y int
 
 	continue /* ERROR "continue" */
@@ -373,19 +373,19 @@ func continues() {
 	}
 }
 
-func returns0() {
+fn returns0() {
 	return
 	return 0 /* ERROR no result values expected */
 }
 
-func returns1(x float64) (int, *float64) {
+fn returns1(x float64) (int, *float64) {
 	return 0, &x
 	return /* ERROR wrong number of return values */
 	return "foo" /* ERROR "cannot convert" */, x /* ERROR "cannot use .* in return statement" */
 	return /* ERROR wrong number of return values */ 0, &x, 1
 }
 
-func returns2() (a, b int) {
+fn returns2() (a, b int) {
 	return
 	return 1, "foo" /* ERROR cannot convert */
 	return /* ERROR wrong number of return values */ 1, 2, 3
@@ -396,7 +396,7 @@ func returns2() (a, b int) {
 	}
 }
 
-func returns3() (_ int) {
+fn returns3() (_ int) {
 	return
 	{
 		var _ int // blank (_) identifiers never shadow since they are in no scope
@@ -404,7 +404,7 @@ func returns3() (_ int) {
 	}
 }
 
-func switches0() {
+fn switches0() {
 	var x int
 
 	switch x {
@@ -520,7 +520,7 @@ func switches0() {
 	}
 }
 
-func switches1() {
+fn switches1() {
 	fallthrough /* ERROR "fallthrough statement out of place" */
 
 	var x int
@@ -600,7 +600,7 @@ func switches1() {
 	}
 }
 
-func switches2() {
+fn switches2() {
 	// untyped nil is not permitted as switch expression
 	switch nil /* ERROR "use of untyped nil" */ {
 	case 1, 2, "foo": // don't report additional errors here
@@ -630,7 +630,7 @@ func switches2() {
 	}
 }
 
-func issue11667() {
+fn issue11667() {
 	switch 9223372036854775808 /* ERROR "overflows int" */ {
 	}
 	switch 9223372036854775808 /* ERROR "overflows int" */ {
@@ -646,8 +646,8 @@ func issue11667() {
 	}
 }
 
-func issue11687() {
-	f := func() (_, _ int) { return }
+fn issue11687() {
+	f := fn() (_, _ int) { return }
 	switch f /* ERROR "2-valued f" */ () {
 	}
 	var x int
@@ -671,10 +671,10 @@ type T struct{}
 type T1 struct{}
 type T2 struct{}
 
-func (T) m() {}
-func (T2) m(int) {}
+fn (T) m() {}
+fn (T2) m(int) {}
 
-func typeswitches() {
+fn typeswitches() {
 	var i int
 	var x interface{}
 
@@ -723,18 +723,18 @@ func typeswitches() {
 
 // Test that each case clause uses the correct type of the variable
 // declared by the type switch (issue 5504).
-func typeswitch0() {
+fn typeswitch0() {
 	switch y := interface{}(nil).(type) {
 	case int:
-		func() int { return y + 0 }()
+		fn() int { return y + 0 }()
 	case float32:
-		func() float32 { return y }()
+		fn() float32 { return y }()
 	}
 }
 
 // Test correct scope setup.
 // (no redeclaration errors expected in the type switch)
-func typeswitch1() {
+fn typeswitch1() {
 	var t I
 	switch t := t; t := t.(type) {
 	case nil:
@@ -751,7 +751,7 @@ type A interface { a() }
 type B interface { b() }
 type C interface { a(int) }
 
-func typeswitch2() {
+fn typeswitch2() {
 	switch A(nil).(type) {
 	case A:
 	case B:
@@ -759,7 +759,7 @@ func typeswitch2() {
 	}
 }
 
-func typeswitch3(x interface{}) {
+fn typeswitch3(x interface{}) {
 	switch x.(type) {
 	case int:
 	case float64:
@@ -772,16 +772,16 @@ func typeswitch3(x interface{}) {
 	case nil /* ERROR duplicate case */ , nil /* ERROR duplicate case */ :
 	}
 
-	type F func(int)
+	type F fn(int)
 	switch x.(type) {
 	case nil:
-	case int, func(int):
-	case float32, func /* ERROR duplicate case */ (x int):
+	case int, fn(int):
+	case float32, fn /* ERROR duplicate case */ (x int):
 	case F:
 	}
 }
 
-func fors1() {
+fn fors1() {
 	for {}
 	var i string
 	_ = i
@@ -789,7 +789,7 @@ func fors1() {
 	for i := 0; i < 10; j /* ERROR cannot declare */ := 0 {}
 }
 
-func rangeloops1() {
+fn rangeloops1() {
 	var (
 		x int
 		a [10]float32
@@ -904,7 +904,7 @@ func rangeloops1() {
 	}
 }
 
-func rangeloops2() {
+fn rangeloops2() {
 	type I int
 	type R rune
 
@@ -924,7 +924,7 @@ func rangeloops2() {
 	for _, r /* ERROR cannot use .* in assignment */ = range "foo" {}
 }
 
-func issue6766b() {
+fn issue6766b() {
 	for _ := /* ERROR no new variables */ range "" {}
 	for a, a /* ERROR redeclared */ := range "" { _ = a }
 	var a int
@@ -935,7 +935,7 @@ func issue6766b() {
 // Test that despite errors in the range clause,
 // the loop body is still type-checked (and thus
 // errors reported).
-func issue10148() {
+fn issue10148() {
 	for y /* ERROR declared but not used */ := range "" {
 		_ = "" /* ERROR cannot convert */ + 1
 	}
@@ -947,7 +947,7 @@ func issue10148() {
 	}
 }
 
-func labels0() {
+fn labels0() {
 	goto L0
 	goto L1
 	L0:
@@ -958,7 +958,7 @@ func labels0() {
 		L2:
 		L0 /* ERROR "already declared" */ :
 	}
-	_ = func() {
+	_ = fn() {
 		goto L0
 		goto L1
 		goto L2
@@ -968,7 +968,7 @@ func labels0() {
 	}
 }
 
-func expression_statements(ch chan int) {
+fn expression_statements(ch chan int) {
 	expression_statements(ch)
 	<-ch
 	println()

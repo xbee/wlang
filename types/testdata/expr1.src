@@ -8,7 +8,7 @@ package expr1
 
 type mybool bool
 
-func _(x, y bool, z mybool) {
+fn _(x, y bool, z mybool) {
 	x = x || y
 	x = x || true
 	x = x || false
@@ -26,7 +26,7 @@ func _(x, y bool, z mybool) {
 
 type myint int
 
-func _(x, y int, z myint) {
+fn _(x, y int, z myint) {
 	x = x + 1
 	x = x + 1.0
 	x = x + 1.1 // ERROR truncated to int
@@ -52,7 +52,7 @@ func _(x, y int, z myint) {
 
 type myuint uint
 
-func _(x, y uint, z myuint) {
+fn _(x, y uint, z myuint) {
 	x = x + 1
 	x = x + - /* ERROR overflows uint */ 1
 	x = x + 1.0
@@ -80,7 +80,7 @@ func _(x, y uint, z myuint) {
 
 type myfloat64 float64
 
-func _(x, y float64, z myfloat64) {
+fn _(x, y float64, z myfloat64) {
 	x = x + 1
 	x = x + -1
 	x = x + 1.0
@@ -108,7 +108,7 @@ func _(x, y float64, z myfloat64) {
 
 type mystring string
 
-func _(x, y string, z mystring) {
+fn _(x, y string, z mystring) {
 	x = x + "foo"
 	x = x /* ERROR not defined */ - "foo"
 	x = x + 1 // ERROR cannot convert
@@ -117,9 +117,9 @@ func _(x, y string, z mystring) {
 	x = x * 10 // ERROR cannot convert
 }
 
-func f() (a, b int) { return }
+fn f() (a, b int) { return }
 
-func _(x int) {
+fn _(x int) {
 	_ = f /* ERROR 2-valued f */ () + 1
 	_ = x + f /* ERROR 2-valued f */ ()
 	_ = f /* ERROR 2-valued f */ () + f

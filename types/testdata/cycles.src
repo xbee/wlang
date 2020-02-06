@@ -47,9 +47,9 @@ type (
 	P0 *P0
 
 	// functions
-	F0 func(F0)
-	F1 func() F1
-	F2 func(F2) F2
+	F0 fn(F0)
+	F1 fn() F1
+	F2 fn(F2) F2
 
 	// interfaces
 	I0 /* ERROR cycle */ interface{ I0 }
@@ -80,7 +80,7 @@ type (
 	E AA
 )
 
-func _() {
+fn _() {
 	type (
 		t1 /* ERROR cycle */ t1
 		t2 *t2
@@ -106,9 +106,9 @@ func _() {
 		p0 *p0
 
 		// functions
-		f0 func(f0)
-		f1 func() f1
-		f2 func(f2) f2
+		f0 fn(f0)
+		f1 fn() f1
+		f2 fn(f2) f2
 
 		// interfaces
 		i0 /* ERROR cycle */ interface{ i0 }
@@ -140,13 +140,13 @@ type (
 	P2 *T10
 )
 
-func (T11) m() {}
+fn (T11) m() {}
 
 type T11 /* ERROR cycle */ struct{ T11 }
 
 type T12 /* ERROR cycle */ struct{ T12 }
 
-func (*T12) m() {}
+fn (*T12) m() {}
 
 type (
 	P3 *T13
@@ -163,12 +163,12 @@ type (
 )
 
 // Test case for types depending on function literals (see also #22992).
-type T20 chan [unsafe.Sizeof(func(ch T20){ _ = <-ch })]byte
-type T22 = chan [unsafe.Sizeof(func(ch T20){ _ = <-ch })]byte
+type T20 chan [unsafe.Sizeof(fn(ch T20){ _ = <-ch })]byte
+type T22 = chan [unsafe.Sizeof(fn(ch T20){ _ = <-ch })]byte
 
-func _() {
-	type T0 func(T0)
-	type T1 /* ERROR cycle */ = func(T1)
-	type T2 chan [unsafe.Sizeof(func(ch T2){ _ = <-ch })]byte
-	type T3 /* ERROR cycle */ = chan [unsafe.Sizeof(func(ch T3){ _ = <-ch })]byte
+fn _() {
+	type T0 fn(T0)
+	type T1 /* ERROR cycle */ = fn(T1)
+	type T2 chan [unsafe.Sizeof(fn(ch T2){ _ = <-ch })]byte
+	type T3 /* ERROR cycle */ = chan [unsafe.Sizeof(fn(ch T3){ _ = <-ch })]byte
 }

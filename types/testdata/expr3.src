@@ -6,7 +6,7 @@ package expr3
 
 import "time"
 
-func indexes() {
+fn indexes() {
 	_ = 1 /* ERROR "cannot index" */ [0]
 	_ = indexes /* ERROR "cannot index" */ [0]
 	_ = ( /* ERROR "cannot slice" */ 12 + 3)[1:2]
@@ -147,26 +147,26 @@ func indexes() {
 
 type T struct {
 	x int
-	y func()
+	y fn()
 }
 
-func (*T) m() {}
+fn (*T) m() {}
 
-func method_expressions() {
+fn method_expressions() {
 	_ = T.a /* ERROR "no field or method" */
 	_ = T.x /* ERROR "has no method" */
 	_ = T.m /* ERROR "not in method set" */
 	_ = (*T).m
 
-	var f func(*T) = T.m /* ERROR "not in method set" */
-	var g func(*T) = (*T).m
+	var f fn(*T) = T.m /* ERROR "not in method set" */
+	var g fn(*T) = (*T).m
 	_, _ = f, g
 
 	_ = T.y /* ERROR "has no method" */
 	_ = (*T).y /* ERROR "has no method" */
 }
 
-func struct_literals() {
+fn struct_literals() {
 	type T0 struct {
 		a, b, c int
 	}
@@ -213,7 +213,7 @@ func struct_literals() {
 	}
 }
 
-func array_literals() {
+fn array_literals() {
 	type A0 [0]int
 	_ = A0{}
 	_ = A0{0 /* ERROR "index .* out of bounds" */}
@@ -284,7 +284,7 @@ func array_literals() {
 	_ = [...]*Point{{1.5, -3.5}, {0, 0}}
 }
 
-func slice_literals() {
+fn slice_literals() {
 	type S0 []int
 	_ = S0{}
 	_ = S0{0, 1, 2}
@@ -345,9 +345,9 @@ func slice_literals() {
 const index2 int = 2
 
 type N int
-func (N) f() {}
+fn (N) f() {}
 
-func map_literals() {
+fn map_literals() {
 	type M0 map[string]int
 	type M1 map[bool]int
 	type M2 map[*int]int
@@ -436,11 +436,11 @@ type I2 interface {
 type T1 struct{}
 type T2 struct{}
 
-func (T2) m(int) {}
+fn (T2) m(int) {}
 
 type mybool bool
 
-func type_asserts() {
+fn type_asserts() {
 	var x int
 	_ = x /* ERROR "not an interface" */ .(int)
 
@@ -466,20 +466,20 @@ func type_asserts() {
 	_ = e.(I2)
 }
 
-func f0() {}
-func f1(x int) {}
-func f2(u float32, s string) {}
-func fs(s []byte) {}
-func fv(x ...int) {}
-func fi(x ... interface{}) {}
-func (T) fm(x ...int)
+fn f0() {}
+fn f1(x int) {}
+fn f2(u float32, s string) {}
+fn fs(s []byte) {}
+fn fv(x ...int) {}
+fn fi(x ... interface{}) {}
+fn (T) fm(x ...int)
 
-func g0() {}
-func g1() int { return 0}
-func g2() (u float32, s string) { return }
-func gs() []byte { return nil }
+fn g0() {}
+fn g1() int { return 0}
+fn g2() (u float32, s string) { return }
+fn gs() []byte { return nil }
 
-func _calls() {
+fn _calls() {
 	var x int
 	var y float32
 	var s []int
@@ -555,7 +555,7 @@ func _calls() {
 	fi(0, g2 /* ERROR "2-valued g2" */ ())
 }
 
-func issue6344() {
+fn issue6344() {
 	type T []interface{}
 	var x T
 	fi(x...) // ... applies also to named slices

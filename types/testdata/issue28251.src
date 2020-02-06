@@ -13,36 +13,36 @@ type T struct{}
 
 type T0 = *T
 
-func (T0) m() {}
+fn (T0) m() {}
 
-func _() { (&T{}).m() }
+fn _() { (&T{}).m() }
 
 // various alternative forms
 type (
         T1 = (((T)))
 )
 
-func ((*(T1))) m1() {}
-func _() { (T{}).m2() }
-func _() { (&T{}).m2() }
+fn ((*(T1))) m1() {}
+fn _() { (T{}).m2() }
+fn _() { (&T{}).m2() }
 
 type (
         T2 = (((T3)))
         T3 = T
 )
 
-func (T2) m2() {}
-func _() { (T{}).m2() }
-func _() { (&T{}).m2() }
+fn (T2) m2() {}
+fn _() { (T{}).m2() }
+fn _() { (&T{}).m2() }
 
 type (
         T4 = ((*(T5)))
         T5 = T
 )
 
-func (T4) m4() {}
-func _() { (T{}).m4 /* ERROR m4 is not in method set of T */ () }
-func _() { (&T{}).m4() }
+fn (T4) m4() {}
+fn _() { (T{}).m4 /* ERROR m4 is not in method set of T */ () }
+fn _() { (&T{}).m4() }
 
 type (
         T6 = (((T7)))
@@ -50,9 +50,9 @@ type (
         T8 = T
 )
 
-func (T6) m6() {}
-func _() { (T{}).m6 /* ERROR m6 is not in method set of T */ () }
-func _() { (&T{}).m6() }
+fn (T6) m6() {}
+fn _() { (T{}).m6 /* ERROR m6 is not in method set of T */ () }
+fn _() { (&T{}).m6() }
 
 type (
         T9 = *T10
@@ -60,6 +60,6 @@ type (
         T11 = T
 )
 
-func (T9 /* ERROR invalid receiver \*\*T */ ) m9() {}
-func _() { (T{}).m9 /* ERROR has no field or method m9 */ () }
-func _() { (&T{}).m9 /* ERROR has no field or method m9 */ () }
+fn (T9 /* ERROR invalid receiver \*\*T */ ) m9() {}
+fn _() { (T{}).m9 /* ERROR has no field or method m9 */ () }
+fn _() { (&T{}).m9 /* ERROR has no field or method m9 */ () }

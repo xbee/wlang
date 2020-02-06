@@ -9,7 +9,7 @@ package labels
 
 var x int
 
-func f0() {
+fn f0() {
 L1 /* ERROR "label L1 declared but not used" */ :
 	for {
 	}
@@ -80,7 +80,7 @@ L10a: L10b:
 	}
 }
 
-func f1() {
+fn f1() {
 L1:
 	for {
 		if x == 0 {
@@ -156,7 +156,7 @@ L5:
 
 // Additional tests not in the original files.
 
-func f2() {
+fn f2() {
 L1 /* ERROR "label L1 declared but not used" */ :
 	if x == 0 {
 		for {
@@ -165,7 +165,7 @@ L1 /* ERROR "label L1 declared but not used" */ :
 	}
 }
 
-func f3() {
+fn f3() {
 L1:
 L2:
 L3:
@@ -184,13 +184,13 @@ L3:
 
 // Blank labels are never declared.
 
-func f4() {
+fn f4() {
 _:
 _: // multiple blank labels are ok
 	goto _ /* ERROR "label _ not declared" */
 }
 
-func f5() {
+fn f5() {
 _:
 	for {
 		break _ /* ERROR "invalid break label _" */
@@ -198,7 +198,7 @@ _:
 	}
 }
 
-func f6() {
+fn f6() {
 _:
 	switch {
 	default:

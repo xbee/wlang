@@ -6,7 +6,7 @@ package errors
 
 // Testing precise operand formatting in error messages
 // (matching messages are regular expressions, hence the \'s).
-func f(x int, m map[string]int) {
+fn f(x int, m map[string]int) {
 	// no values
 	_ = f /* ERROR "f\(0, m\) \(no value\) used as value" */ (0, m)
 
@@ -37,7 +37,7 @@ func f(x int, m map[string]int) {
 }
 
 // Valid ERROR comments can have a variety of forms.
-func _() {
+fn _() {
 	0 /* ERROR "0 .* is not used" */
 	0 /* ERROR 0 .* is not used */
 	0 // ERROR "0 .* is not used"
@@ -46,7 +46,7 @@ func _() {
 
 // Don't report spurious errors as a consequence of earlier errors.
 // Add more tests as needed.
-func _() {
+fn _() {
 	if err := foo /* ERROR undeclared */ (); err != nil /* no error here */ {}
 }
 
@@ -55,6 +55,6 @@ type T struct{}
 var _ int = T /* ERROR value of type T */ {} // use T in error message rather then errors.T
 
 // Don't report errors containing "invalid type" (issue #24182).
-func _(x *missing /* ERROR undeclared name: missing */ ) {
+fn _(x *missing /* ERROR undeclared name: missing */ ) {
 	x.m() // there shouldn't be an error here referring to *invalid type
 }

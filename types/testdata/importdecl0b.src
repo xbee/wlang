@@ -26,8 +26,8 @@ const Pi1 = m.Pi
 
 type _ T // use "testing"
 
-func _() func() interface{} {
-	return func() interface{} {
+fn _() fn() interface{} {
+	return fn() interface{} {
 		return Println // use "fmt"
 	}
 }

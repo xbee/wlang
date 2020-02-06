@@ -16,7 +16,7 @@ type u interface {
 	t
 }
 
-func _() {
+fn _() {
 	var t t
 	var u u
 
@@ -96,4 +96,4 @@ type T4 /* ERROR cycle */ interface {
 var x4 T4
 var _ = cast4(x4.m)
 
-type cast4 func()
+type cast4 fn()

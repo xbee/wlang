@@ -8,7 +8,7 @@
 
 package literals
 
-func _() {
+fn _() {
 	// 0-octals
 	assert(0_123 == 0123)
 	assert(0123_456 == 0123456)

@@ -11,7 +11,7 @@ import "fmt"
 
 // fields with the same name at the same level cancel each other out
 
-func _() {
+fn _() {
 	type (
 		T1 struct { X int }
 		T2 struct { X int }
@@ -22,7 +22,7 @@ func _() {
 	_ = t.X /* ERROR "ambiguous selector" */
 }
 
-func _() {
+fn _() {
 	type (
 		T1 struct { X int }
 		T2 struct { T1 }
@@ -34,7 +34,7 @@ func _() {
 	_ = t.X /* ERROR "ambiguous selector" */
 }
 
-func issue4355() {
+fn issue4355() {
 	type (
 	    T1 struct {X int}
 	    T2 struct {T1}
@@ -47,7 +47,7 @@ func issue4355() {
 	_ = t.X /* ERROR "ambiguous selector" */
 }
 
-func _() {
+fn _() {
 	type State int
 	type A struct{ State }
 	type B struct{ fmt.State }
@@ -59,7 +59,7 @@ func _() {
 
 // Embedded fields can be predeclared types.
 
-func _() {
+fn _() {
 	type T0 struct{
 		int
 		float32
@@ -81,7 +81,7 @@ func _() {
 
 // Restrictions on embedded field types.
 
-func _() {
+fn _() {
 	type I1 interface{}
 	type I2 interface{}
 	type P1 *int
@@ -108,10 +108,10 @@ func _() {
 // Named types that are pointers.
 
 type S struct{ x int }
-func (*S) m() {}
+fn (*S) m() {}
 type P *S
 
-func _() {
+fn _() {
 	var s *S
 	_ = s.x
 	_ = s.m
@@ -208,7 +208,7 @@ type S13 struct {
 	S8
 }
 
-func _() {
+fn _() {
 	_ = struct{}{}.Foo /* ERROR "no field or method" */
 	_ = S0{}.A
 	_ = S0{}.D /* ERROR "no field or method" */

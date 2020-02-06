@@ -15,7 +15,7 @@ var (
 )
 
 // goto after declaration okay
-func _() {
+fn _() {
 	x := 1
 	goto L
 L:
@@ -23,7 +23,7 @@ L:
 }
 
 // goto before declaration okay
-func _() {
+fn _() {
 	goto L
 L:
 	x := 1
@@ -31,7 +31,7 @@ L:
 }
 
 // goto across declaration not okay
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps over variable declaration at line 36" */
 	x := 1
 	_ = x
@@ -39,7 +39,7 @@ L:
 }
 
 // goto across declaration in inner scope okay
-func _() {
+fn _() {
 	goto L
 	{
 		x := 1
@@ -49,7 +49,7 @@ L:
 }
 
 // goto across declaration after inner scope not okay
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps over variable declaration at line 58" */
 	{
 		x := 1
@@ -61,14 +61,14 @@ L:
 }
 
 // goto across declaration in reverse okay
-func _() {
+fn _() {
 L:
 	x := 1
 	_ = x
 	goto L
 }
 
-func _() {
+fn _() {
 L: L1:
 	x := 1
 	_ = x
@@ -77,7 +77,7 @@ L: L1:
 }
 
 // error shows first offending variable
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps over variable declaration at line 84" */
 	x := 1
 	_ = x
@@ -87,7 +87,7 @@ L:
 }
 
 // goto not okay even if code path is dead
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps over variable declaration" */
 	x := 1
 	_ = x
@@ -98,14 +98,14 @@ L:
 }
 
 // goto into outer block okay
-func _() {
+fn _() {
 	{
 		goto L
 	}
 L:
 }
 
-func _() {
+fn _() {
 	{
 		goto L
 		goto L1
@@ -114,14 +114,14 @@ L: L1:
 }
 
 // goto backward into outer block okay
-func _() {
+fn _() {
 L:
 	{
 		goto L
 	}
 }
 
-func _() {
+fn _() {
 L: L1:
 	{
 		goto L
@@ -130,14 +130,14 @@ L: L1:
 }
 
 // goto into inner block not okay
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	{
 	L:
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	goto L1 /* ERROR "goto L1 jumps into block" */
 	{
@@ -146,14 +146,14 @@ func _() {
 }
 
 // goto backward into inner block still not okay
-func _() {
+fn _() {
 	{
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	{
 	L: L1:
 	}
@@ -162,7 +162,7 @@ func _() {
 }
 
 // error shows first (outermost) offending block
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	{
 		{
@@ -174,7 +174,7 @@ func _() {
 }
 
 // error prefers block diagnostic over declaration diagnostic
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	x := 1
 	_ = x
@@ -188,14 +188,14 @@ func _() {
 
 // if
 
-func _() {
+fn _() {
 L:
 	if true {
 		goto L
 	}
 }
 
-func _() {
+fn _() {
 L:
 	if true {
 		goto L
@@ -203,7 +203,7 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 L:
 	if false {
 	} else {
@@ -211,14 +211,14 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	if true {
 	L:
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	if true {
 	L:
@@ -226,7 +226,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	if true {
 	} else {
@@ -234,7 +234,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if false {
 	L:
 	} else {
@@ -242,7 +242,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		goto L /* ERROR "goto L jumps into block" */
 	} else {
@@ -250,7 +250,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		goto L /* ERROR "goto L jumps into block" */
 	} else if false {
@@ -258,7 +258,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		goto L /* ERROR "goto L jumps into block" */
 	} else if false {
@@ -267,7 +267,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		goto L /* ERROR "goto L jumps into block" */
 	} else if false {
@@ -276,7 +276,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		goto L /* ERROR "goto L jumps into block" */
 	} else {
@@ -284,7 +284,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	if true {
 		L:
 	} else {
@@ -294,28 +294,28 @@ func _() {
 
 // for
 
-func _() {
+fn _() {
 	for {
 		goto L
 	}
 L:
 }
 
-func _() {
+fn _() {
 	for {
 		goto L
 	L:
 	}
 }
 
-func _() {
+fn _() {
 	for {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for {
 		goto L
 	L1:
@@ -324,42 +324,42 @@ L:
 	goto L1 /* ERROR "goto L1 jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i < n {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i = 0; i < n; i++ {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i = range x {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i = range c {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i = range m {
 	L:
 	}
 	goto L /* ERROR "goto L jumps into block" */
 }
 
-func _() {
+fn _() {
 	for i = range s {
 	L:
 	}
@@ -368,7 +368,7 @@ func _() {
 
 // switch
 
-func _() {
+fn _() {
 L:
 	switch i {
 	case 0:
@@ -376,7 +376,7 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 L:
 	switch i {
 	case 0:
@@ -386,7 +386,7 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 	switch i {
 	case 0:
 
@@ -396,7 +396,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	switch i {
 	case 0:
 
@@ -406,7 +406,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	switch i {
 	case 0:
 		goto L
@@ -416,7 +416,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	switch i {
 	case 0:
@@ -424,7 +424,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	switch i {
 	case 0:
@@ -434,7 +434,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	switch i {
 	case 0:
@@ -443,7 +443,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	switch i {
 	default:
 		goto L /* ERROR "goto L jumps into block" */
@@ -452,7 +452,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	switch i {
 	case 0:
 	L:
@@ -465,7 +465,7 @@ func _() {
 // select
 // different from switch.  the statement has no implicit block around it.
 
-func _() {
+fn _() {
 L:
 	select {
 	case <-c:
@@ -473,7 +473,7 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 L:
 	select {
 	case c <- 1:
@@ -483,7 +483,7 @@ L:
 	}
 }
 
-func _() {
+fn _() {
 	select {
 	case <-c:
 
@@ -493,7 +493,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	select {
 	case c <- 1:
 
@@ -503,7 +503,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	select {
 	case <-c:
 		goto L
@@ -513,7 +513,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	select {
 	case c <- 1:
@@ -521,7 +521,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	select {
 	case c <- 1:
@@ -531,7 +531,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	goto L /* ERROR "goto L jumps into block" */
 	select {
 	case <-c:
@@ -540,7 +540,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	select {
 	default:
 		goto L /* ERROR "goto L jumps into block" */
@@ -549,7 +549,7 @@ func _() {
 	}
 }
 
-func _() {
+fn _() {
 	select {
 	case <-c:
 	L:

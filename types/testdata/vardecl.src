@@ -6,8 +6,8 @@ package vardecl
 
 // Prerequisites.
 import "math"
-func f() {}
-func g() (x, y int) { return }
+fn f() {}
+fn g() (x, y int) { return }
 var m map[string]int
 
 // Var decls must have a type or an initializer.
@@ -66,7 +66,7 @@ var (
 
 // Variables declared in function bodies must be 'used'.
 type T struct{}
-func (r T) _(a, b, c int) (u, v, w int) {
+fn (r T) _(a, b, c int) (u, v, w int) {
 	var x1 /* ERROR "declared but not used" */ int
 	var x2 /* ERROR "declared but not used" */ int
 	x1 = 1
@@ -121,7 +121,7 @@ func (r T) _(a, b, c int) (u, v, w int) {
 	case int:
 	case float32:
 	case string:
-		_ = func() string {
+		_ = fn() string {
 			return t
 		}
 	}
@@ -130,7 +130,7 @@ func (r T) _(a, b, c int) (u, v, w int) {
 
 	var z1 /* ERROR "declared but not used" */ int
 	var z2 int
-	_ = func(a, b, c int) (u, v, w int) {
+	_ = fn(a, b, c int) (u, v, w int) {
 		z1 = a
 		(z1) = b
 		a = z2
@@ -144,7 +144,7 @@ func (r T) _(a, b, c int) (u, v, w int) {
 	}
 
 	for i, j /* ERROR "declared but not used" */ := range s {
-		_ = func() int {
+		_ = fn() int {
 			return i
 		}
 	}
@@ -152,14 +152,14 @@ func (r T) _(a, b, c int) (u, v, w int) {
 }
 
 // Unused variables in function literals must lead to only one error (issue #22524).
-func _() {
-	_ = func() {
+fn _() {
+	_ = fn() {
 		var x /* ERROR declared but not used */ int
 	}
 }
 
 // Invalid (unused) expressions must not lead to spurious "declared but not used errors"
-func _() {
+fn _() {
 	var a, b, c int
 	var x, y int
 	x, y = a /* ERROR cannot assign [0-9]+ values to [0-9]+ variables */ , b, c
@@ -167,19 +167,19 @@ func _() {
 	_ = y
 }
 
-func _() {
+fn _() {
 	var x int
 	return x /* ERROR no result values expected */
 	return math /* ERROR no result values expected */ .Sin(0)
 }
 
-func _() int {
+fn _() int {
 	var x, y int
 	return /* ERROR wrong number of return values */ x, y
 }
 
 // Short variable declarations must declare at least one new non-blank variable.
-func _() {
+fn _() {
 	_ := /* ERROR no new variables */ 0
 	_, a := 0, 1
 	_, a := /* ERROR no new variables */ 0, 1
@@ -191,15 +191,15 @@ func _() {
 }
 
 // Test case for variables depending on function literals (see also #22992).
-var A /* ERROR initialization cycle */ = func() int { return A }()
+var A /* ERROR initialization cycle */ = fn() int { return A }()
 
-func _() {
+fn _() {
 	// The function literal below must not see a.
-	var a = func() int { return a /* ERROR "undeclared name" */ }()
-	var _ = func() int { return a }()
+	var a = fn() int { return a /* ERROR "undeclared name" */ }()
+	var _ = fn() int { return a }()
 
 	// The function literal below must not see x, y, or z.
-	var x, y, z = 0, 1, func() int { return x /* ERROR "undeclared name" */ + y /* ERROR "undeclared name" */ + z /* ERROR "undeclared name" */ }()
+	var x, y, z = 0, 1, fn() int { return x /* ERROR "undeclared name" */ + y /* ERROR "undeclared name" */ + z /* ERROR "undeclared name" */ }()
 	_, _, _ = x, y, z
 }
 

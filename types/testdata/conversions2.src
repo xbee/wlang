@@ -13,7 +13,7 @@ type I interface {
 
 // conversions between structs
 
-func _() {
+fn _() {
 	type S struct{}
 	type T struct{}
 	var s S
@@ -29,7 +29,7 @@ func _() {
 	t = T(u)
 }
 
-func _() {
+fn _() {
 	type S struct{ x int }
 	type T struct {
 		x int "foo"
@@ -49,7 +49,7 @@ func _() {
 	t = T(u)
 }
 
-func _() {
+fn _() {
 	type E struct{ x int }
 	type S struct{ x E }
 	type T struct {
@@ -70,7 +70,7 @@ func _() {
 	t = T(u)
 }
 
-func _() {
+fn _() {
 	type S struct {
 		x struct {
 			x int "foo"
@@ -98,7 +98,7 @@ func _() {
 	t = T(u)
 }
 
-func _() {
+fn _() {
 	type E1 struct {
 		x int "foo"
 	}
@@ -124,21 +124,21 @@ func _() {
 	t = T(u)
 }
 
-func _() {
+fn _() {
 	type E struct{ x int }
 	type S struct {
-		f func(struct {
+		f fn(struct {
 			x int "foo"
 		})
 	}
 	type T struct {
-		f func(struct {
+		f fn(struct {
 			x int "bar"
 		})
 	}
 	var s S
 	var t T
-	var u struct{ f func(E) }
+	var u struct{ f fn(E) }
 	s = s
 	s = t // ERROR "cannot use .* in assignment"
 	s = u // ERROR "cannot use .* in assignment"
@@ -151,7 +151,7 @@ func _() {
 
 // conversions between pointers to structs
 
-func _() {
+fn _() {
 	type S struct{}
 	type T struct{}
 	var s *S
@@ -167,7 +167,7 @@ func _() {
 	t = (*T)(u)
 }
 
-func _() {
+fn _() {
 	type S struct{ x int }
 	type T struct {
 		x int "foo"
@@ -187,7 +187,7 @@ func _() {
 	t = (*T)(u)
 }
 
-func _() {
+fn _() {
 	type E struct{ x int }
 	type S struct{ x E }
 	type T struct {
@@ -208,7 +208,7 @@ func _() {
 	t = (*T)(u)
 }
 
-func _() {
+fn _() {
 	type S struct {
 		x struct {
 			x int "foo"
@@ -236,7 +236,7 @@ func _() {
 	t = (*T)(u)
 }
 
-func _() {
+fn _() {
 	type E1 struct {
 		x int "foo"
 	}
@@ -262,21 +262,21 @@ func _() {
 	t = (*T)(u)
 }
 
-func _() {
+fn _() {
 	type E struct{ x int }
 	type S struct {
-		f func(struct {
+		f fn(struct {
 			x int "foo"
 		})
 	}
 	type T struct {
-		f func(struct {
+		f fn(struct {
 			x int "bar"
 		})
 	}
 	var s *S
 	var t *T
-	var u *struct{ f func(E) }
+	var u *struct{ f fn(E) }
 	s = s
 	s = t // ERROR "cannot use .* in assignment"
 	s = u // ERROR "cannot use .* in assignment"
@@ -287,21 +287,21 @@ func _() {
 	t = (*T)(u /* ERROR "cannot convert" */ )
 }
 
-func _() {
+fn _() {
 	type E struct{ x int }
 	type S struct {
-		f func(*struct {
+		f fn(*struct {
 			x int "foo"
 		})
 	}
 	type T struct {
-		f func(*struct {
+		f fn(*struct {
 			x int "bar"
 		})
 	}
 	var s *S
 	var t *T
-	var u *struct{ f func(E) }
+	var u *struct{ f fn(E) }
 	s = s
 	s = t // ERROR "cannot use .* in assignment"
 	s = u // ERROR "cannot use .* in assignment"

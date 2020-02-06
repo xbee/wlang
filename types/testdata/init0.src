@@ -68,21 +68,21 @@ var vx3 /* ERROR initialization cycle */ S1 = S1{vx3.f}
 
 var x4 = x5
 var x5 /* ERROR initialization cycle */ = f1()
-func f1() int { return x5*10 }
+fn f1() int { return x5*10 }
 
 var x6, x7 /* ERROR initialization cycle */ = f2()
 var x8 = x7
-func f2() (int, int) { return f3() + f3(), 0 }
-func f3() int { return x8 }
+fn f2() (int, int) { return f3() + f3(), 0 }
+fn f3() int { return x8 }
 
 // cycles via function literals
 
-var x9 /* ERROR initialization cycle */ = func() int { return x9 }()
+var x9 /* ERROR initialization cycle */ = fn() int { return x9 }()
 
 var x10 /* ERROR initialization cycle */ = f4()
 
-func f4() int {
-	_ = func() {
+fn f4() int {
+	_ = fn() {
 		_ = x10
 	}
 	return 0
@@ -92,7 +92,7 @@ func f4() int {
 
 type T1 struct{}
 
-func (T1) m() bool { _ = x11; return false }
+fn (T1) m() bool { _ = x11; return false }
 
 var x11 /* ERROR initialization cycle */ = T1.m(T1{})
 
@@ -100,7 +100,7 @@ var x11 /* ERROR initialization cycle */ = T1.m(T1{})
 
 type T2 struct{}
 
-func (T2) m() bool { _ = x12; return false }
+fn (T2) m() bool { _ = x12; return false }
 
 var t1 T2
 var x12 /* ERROR initialization cycle */ = t1.m

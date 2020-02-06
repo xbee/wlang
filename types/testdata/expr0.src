@@ -150,7 +150,7 @@ var (
 // address of composite literals
 type T struct{x, y int}
 
-func f() T { return T{} }
+fn f() T { return T{} }
 
 var (
 	_ = &T{1, 2}
@@ -172,9 +172,9 @@ var (
 	p3 P = &p2
 )
 
-func g() (a, b int) { return }
+fn g() (a, b int) { return }
 
-func _() {
+fn _() {
 	_ = -g /* ERROR 2-valued g */ ()
 	_ = <-g /* ERROR 2-valued g */ ()
 }

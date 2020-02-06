@@ -51,7 +51,7 @@ var (
 	x3 ABC3
 )
 
-func _() {
+fn _() {
 	// all types have the same method set
 	x1 = x2
 	x2 = x1

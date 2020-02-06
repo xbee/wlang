@@ -10,13 +10,13 @@ package p
 
 // accept Allman/BSD-style declaration but complain
 // (implicit semicolon between signature and body)
-func _() int
+fn _() int
 { /* ERROR "unexpected semicolon or newline before {" */
 	{ return 0 }
 }
 
-func _() {}
+fn _() {}
 
-func _(); { /* ERROR "unexpected semicolon or newline before {" */ }
+fn _(); { /* ERROR "unexpected semicolon or newline before {" */ }
 
-func _() {}
+fn _() {}

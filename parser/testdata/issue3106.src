@@ -7,13 +7,13 @@
 
 package main
 
-func f() {
+fn f() {
 	var m Mutex
 	c := MakeCond(&m)
 	percent := 0
 	const step = 10
 	for i := 0; i < 5; i++ {
-		go func() {
+		go fn() {
 			for {
 				// Emulates some useful work.
 				time.Sleep(1e8)

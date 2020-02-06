@@ -20,7 +20,7 @@ type (
 	}
 	P *T
 	R (*R)
-	F func(A) I
+	F fn(A) I
 	Y interface {
 		f(A) I
 	}
@@ -40,12 +40,12 @@ const _, init /* ERROR "cannot declare init" */ , _ = 0, 1, 2
 type init /* ERROR "cannot declare init" */ struct{}
 var _, init /* ERROR "cannot declare init" */ int
 
-func init() {}
-func init /* ERROR "missing function body" */ ()
+fn init() {}
+fn init /* ERROR "missing function body" */ ()
 
-func _() { const init = 0 }
-func _() { type init int }
-func _() { var init int; _ = init }
+fn _() { const init = 0 }
+fn _() { type init int }
+fn _() { var init int; _ = init }
 
 // invalid array types
 type (
@@ -122,12 +122,12 @@ type (
 	}
 	A4 [10]A3
 
-	F1 func()
-	F2 func(x, y, z float32)
-	F3 func(x, y, x /* ERROR "redeclared" */ float32)
-	F4 func() (x, y, x /* ERROR "redeclared" */ float32)
-	F5 func(x int) (x /* ERROR "redeclared" */ float32)
-	F6 func(x ...int)
+	F1 fn()
+	F2 fn(x, y, z float32)
+	F3 fn(x, y, x /* ERROR "redeclared" */ float32)
+	F4 fn() (x, y, x /* ERROR "redeclared" */ float32)
+	F5 fn(x int) (x /* ERROR "redeclared" */ float32)
+	F6 fn(x ...int)
 
 	I1 interface{}
 	I2 interface {
@@ -180,15 +180,15 @@ type (
 
 // cycles in function/method declarations
 // (test cases for issues #5217, #25790 and variants)
-func f1(x f1 /* ERROR "not a type" */ ) {}
-func f2(x *f2 /* ERROR "not a type" */ ) {}
-func f3() (x f3 /* ERROR "not a type" */ ) { return }
-func f4() (x *f4 /* ERROR "not a type" */ ) { return }
+fn f1(x f1 /* ERROR "not a type" */ ) {}
+fn f2(x *f2 /* ERROR "not a type" */ ) {}
+fn f3() (x f3 /* ERROR "not a type" */ ) { return }
+fn f4() (x *f4 /* ERROR "not a type" */ ) { return }
 
-func (S0) m1 /* ERROR illegal cycle */ (x S0 /* ERROR value .* is not a type */ .m1) {}
-func (S0) m2 /* ERROR illegal cycle */ (x *S0 /* ERROR value .* is not a type */ .m2) {}
-func (S0) m3 /* ERROR illegal cycle */ () (x S0 /* ERROR value .* is not a type */ .m3) { return }
-func (S0) m4 /* ERROR illegal cycle */ () (x *S0 /* ERROR value .* is not a type */ .m4) { return }
+fn (S0) m1 /* ERROR illegal cycle */ (x S0 /* ERROR value .* is not a type */ .m1) {}
+fn (S0) m2 /* ERROR illegal cycle */ (x *S0 /* ERROR value .* is not a type */ .m2) {}
+fn (S0) m3 /* ERROR illegal cycle */ () (x S0 /* ERROR value .* is not a type */ .m3) { return }
+fn (S0) m4 /* ERROR illegal cycle */ () (x *S0 /* ERROR value .* is not a type */ .m4) { return }
 
 // interfaces may not have any blank methods
 type BlankI interface {
@@ -200,7 +200,7 @@ type BlankI interface {
 // non-interface types may have multiple blank methods
 type BlankT struct{}
 
-func (BlankT) _() {}
-func (BlankT) _(int) {}
-func (BlankT) _() int { return 0 }
-func (BlankT) _(int) int { return 0}
+fn (BlankT) _() {}
+fn (BlankT) _(int) {}
+fn (BlankT) _() int { return 0 }
+fn (BlankT) _(int) int { return 0}

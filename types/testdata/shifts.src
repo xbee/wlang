@@ -4,7 +4,7 @@
 
 package shifts
 
-func shifts0() {
+fn shifts0() {
 	// basic constant shifts
 	const (
 		s = 10
@@ -40,7 +40,7 @@ func shifts0() {
 	)
 }
 
-func shifts1() {
+fn shifts1() {
 	// basic non-constant shifts
 	var (
 		i int
@@ -68,7 +68,7 @@ func shifts1() {
 	)
 }
 
-func shifts2() {
+fn shifts2() {
 	// from the spec
 	var (
 		s uint = 33
@@ -88,7 +88,7 @@ func shifts2() {
 	_, _, _, _, _, _, _, _, _, _, _, _ = i, j, k, m, n, o, p, u, u1, u2, v, w
 }
 
-func shifts3(a int16, b float32) {
+fn shifts3(a int16, b float32) {
 	// random tests
 	var (
 		s uint = 11
@@ -100,7 +100,7 @@ func shifts3(a int16, b float32) {
 	_, _, _ = u, v, x
 }
 
-func shifts4() {
+fn shifts4() {
 	// shifts in comparisons w/ untyped operands
 	var s uint
 
@@ -150,7 +150,7 @@ func shifts4() {
 	_ = 1. /* ERROR "integer" */ <<s + 1. /* ERROR "integer" */ <<s == 1. /* ERROR "integer" */ <<s + 1. /* ERROR "integer" */ <<s
 }
 
-func shifts5() {
+fn shifts5() {
 	// shifts in comparisons w/ typed operands
 	var s uint
 	var x int
@@ -174,7 +174,7 @@ func shifts5() {
 	_ = 1.1  /* ERROR "int" */ <<s == x<<s
 }
 
-func shifts6() {
+fn shifts6() {
 	// shifts as operands in non-arithmetic operations and as arguments
 	var a [10]int
 	var s uint
@@ -212,7 +212,7 @@ func shifts6() {
 	// delete(m1, 1<<s)
 }
 
-func shifts7() {
+fn shifts7() {
 	// shifts of shifts
 	var s uint
 	var x int
@@ -239,7 +239,7 @@ func shifts7() {
 	x = ( /* ERROR "integer" */ 1.<<s)<<(1.<<s)
 }
 
-func shifts8() {
+fn shifts8() {
 	// shift examples from shift discussion: better error messages
 	var s uint
 	_ = 1.0 /* ERROR "shifted operand 1.0 \(type float64\) must be integer" */ <<s == 1
@@ -264,7 +264,7 @@ func shifts8() {
 	_ = complex64(1.1 /* ERROR "shifted operand .* must be integer" */ <<s)
 }
 
-func shifts9() {
+fn shifts9() {
 	// various originally failing snippets of code from the std library
 	// from src/compress/lzw/reader.go:90
 	{
@@ -335,12 +335,12 @@ func shifts9() {
 	}
 }
 
-func issue5895() {
+fn issue5895() {
 	var x = 'a' << 1 // type of x must be rune
 	var _ rune = x
 }
 
-func issue11325() {
+fn issue11325() {
 	var _ = 0 >> 1.1 /* ERROR "truncated to uint" */ // example from issue 11325
 	_ = 0 >> 1.1 /* ERROR "truncated to uint" */
 	_ = 0 << 1.1 /* ERROR "truncated to uint" */
@@ -352,7 +352,7 @@ func issue11325() {
 	_ = 1.1 /* ERROR "must be integer" */ >> 1
 }
 
-func issue11594() {
+fn issue11594() {
 	var _ = complex64 /* ERROR "must be integer" */ (1) << 2 // example from issue 11594
 	_ = float32 /* ERROR "must be integer" */ (0) << 1
 	_ = float64 /* ERROR "must be integer" */ (0) >> 2
@@ -360,7 +360,7 @@ func issue11594() {
 	_ = complex64 /* ERROR "must be integer" */ (0) >> 4
 }
 
-func issue21727() {
+fn issue21727() {
 	var s uint
 	var a = make([]int, 1<<s + 1.2 /* ERROR "truncated to int" */ )
 	var _ = a[1<<s - 2.3 /* ERROR "truncated to int" */ ]
@@ -369,7 +369,7 @@ func issue21727() {
 	var _ = string(1.0 /* ERROR "cannot convert" */ << s)
 }
 
-func issue22969() {
+fn issue22969() {
 	var s uint
 	var a []byte
 	_ = a[0xffffffffffffffff /* ERROR "overflows int" */ <<s] // example from issue 22969

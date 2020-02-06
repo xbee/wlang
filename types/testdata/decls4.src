@@ -15,7 +15,7 @@ type (
 	T3 interface{
 		m() T2
 	}
-	T4 func(int, T0) chan T2
+	T4 fn(int, T0) chan T2
 )
 
 type (
@@ -34,7 +34,7 @@ type (
 	A13 = interface{
 		m() A2
 	}
-	A14 = func(int, A0) chan A2
+	A14 = fn(int, A0) chan A2
 )
 
 // check assignment compatibility due to equality of types
@@ -59,12 +59,12 @@ var (
 )
 
 // alias receiver types
-func (Ai /* ERROR "invalid receiver" */) m1() {}
-func (T0) m1() {}
-func (A0) m1 /* ERROR already declared */ () {}
-func (A0) m2 () {}
-func (A3 /* ERROR invalid receiver */ ) m1 () {}
-func (A10 /* ERROR invalid receiver */ ) m1() {}
+fn (Ai /* ERROR "invalid receiver" */) m1() {}
+fn (T0) m1() {}
+fn (A0) m1 /* ERROR already declared */ () {}
+fn (A0) m2 () {}
+fn (A3 /* ERROR invalid receiver */ ) m1 () {}
+fn (A10 /* ERROR invalid receiver */ ) m1() {}
 
 // x0 has methods m1, m2 declared via receiver type names T0 and A0
 var _ interface{ m1(); m2() } = x0
@@ -85,7 +85,7 @@ var (
 )
 
 type U = T
-func (U) m() {}
+fn (U) m() {}
 
 // alias receiver types (long type declaration chains)
 type (
@@ -95,8 +95,8 @@ type (
 	V3 = T
 )
 
-func (V0) m /* ERROR already declared */ () {}
-func (V1) n() {}
+fn (V0) m /* ERROR already declared */ () {}
+fn (V1) n() {}
 
 // alias receiver types (invalid due to cycles)
 type (
@@ -105,8 +105,8 @@ type (
 	W2 = ((W0))
 )
 
-func (W0) m() {} // no error expected (due to above cycle error)
-func (W1) n() {}
+fn (W0) m() {} // no error expected (due to above cycle error)
+fn (W1) n() {}
 
 // alias receiver types (invalid due to builtin underlying type)
 type (
@@ -115,8 +115,8 @@ type (
 	B2 = int
 )
 
-func (B0 /* ERROR invalid receiver */ ) m() {}
-func (B1 /* ERROR invalid receiver */ ) n() {}
+fn (B0 /* ERROR invalid receiver */ ) m() {}
+fn (B1 /* ERROR invalid receiver */ ) n() {}
 
 // cycles
 type (
@@ -140,11 +140,11 @@ var (
 )
 
 // embedding and lookup of fields and methods
-func _(s struct{A0}) { s.A0 = x0 }
+fn _(s struct{A0}) { s.A0 = x0 }
 
 type eX struct{xf int}
 
-func (eX) xm()
+fn (eX) xm()
 
 type eY = struct{eX} // field/method set of eY includes xf, xm
 

@@ -8,7 +8,7 @@
 
 package p
 
-func g() {
+fn g() {
 	m := make(map[string]! /* ERROR "expected type, found '!'" */ )
 	for {
 		x := 1
@@ -16,7 +16,7 @@ func g() {
 	}
 }
 
-func f() {
+fn f() {
 	m := make(map[string]) /* ERROR "expected type, found '\)'" */
 	for {
 		x := 1
