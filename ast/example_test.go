@@ -60,7 +60,7 @@ func ExamplePrint() {
 	// src is the input for which we want to print the AST.
 	src := `
 package main
-func main() {
+fn main() {
 	println("Hello, World!")
 }
 `
@@ -94,7 +94,7 @@ func main() {
 	//     15  .  .  .  .  }
 	//     16  .  .  .  }
 	//     17  .  .  .  Type: *ast.FuncType {
-	//     18  .  .  .  .  Func: 3:1
+	//     18  .  .  .  .  Fn: 3:1
 	//     19  .  .  .  .  Params: *ast.FieldList {
 	//     20  .  .  .  .  .  Opening: 3:10
 	//     21  .  .  .  .  .  Closing: 3:11
@@ -154,7 +154,7 @@ const hello = "Hello, World!" // line comment 1
 var foo = hello // line comment 2
 
 // This comment is associated with the main function.
-func main() {
+fn main() {
 	fmt.Println(hello) // line comment 3
 }
 `

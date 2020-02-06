@@ -390,7 +390,7 @@ type (
 
 	// A FuncType node represents a function type.
 	FuncType struct {
-		Func    token.Pos  // position of "func" keyword (token.NoPos if there is no "func")
+		Func    token.Pos  // position of "fn" keyword (token.NoPos if there is no "fn")
 		Params  *FieldList // (incoming) parameters; non-nil
 		Results *FieldList // (outgoing) results; or nil
 	}

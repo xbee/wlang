@@ -164,7 +164,7 @@ var tokens = [...]elt{
 	{token.FALLTHROUGH, "fallthrough", keyword},
 	{token.FOR, "for", keyword},
 
-	{token.FUNC, "func", keyword},
+	{token.FN, "fn", keyword},
 	{token.GO, "go", keyword},
 	{token.GOTO, "goto", keyword},
 	{token.IF, "if", keyword},
@@ -448,7 +448,7 @@ var lines = []string{
 	"fallthrough$\n",
 	"for\n",
 
-	"func\n",
+	"fn\n",
 	"go\n",
 	"goto\n",
 	"if\n",
@@ -487,7 +487,7 @@ var lines = []string{
 	"foo    $/* an EOF terminates a line */ /*",
 	"foo    $/* an EOF terminates a line */ //",
 
-	"package main$\n\nfunc main() {\n\tif {\n\t\treturn /* */ }$\n}$\n",
+	"package main$\n\nfn main() {\n\tif {\n\t\treturn /* */ }$\n}$\n",
 	"package main$",
 }
 
@@ -838,7 +838,7 @@ func TestIssue10213(t *testing.T) {
 		var D = 4
 		// foo
 
-		func anycode() {
+		fn anycode() {
 		// foo
 		}
 	`
