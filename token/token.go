@@ -167,11 +167,12 @@ var tokens = [...]string{
 	SHR_ASSIGN:     ">>=",
 	AND_NOT_ASSIGN: "&^=",
 
-	LAND:  "&&",
-	LOR:   "||",
-	ARROW: "<-",
-	INC:   "++",
-	DEC:   "--",
+	LAND:   "&&",
+	LOR:    "||",
+	LARROW: "<-",
+	RARROW: "->",
+	INC:    "++",
+	DEC:    "--",
 
 	EQL:    "==",
 	LSS:    "<",
