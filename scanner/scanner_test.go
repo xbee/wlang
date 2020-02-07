@@ -5,13 +5,14 @@
 package scanner
 
 import (
-	"github.com/xbee/wlang/token"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"testing"
+
+	"github.com/xbee/wlang/token"
 )
 
 var fset = token.NewFileSet()
@@ -123,7 +124,7 @@ var tokens = [...]elt{
 
 	{token.LAND, "&&", operator},
 	{token.LOR, "||", operator},
-	{token.ARROW, "<-", operator},
+	{token.LARROW, "<-", operator},
 	{token.INC, "++", operator},
 	{token.DEC, "--", operator},
 

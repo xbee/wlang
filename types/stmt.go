@@ -7,10 +7,11 @@
 package types
 
 import (
+	"sort"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/constant"
 	"github.com/xbee/wlang/token"
-	"sort"
 )
 
 func (check *Checker) funcBody(decl *declInfo, name string, sig *Signature, body *ast.BlockStmt, iota constant.Value) {
@@ -691,7 +692,7 @@ func (check *Checker) stmt(ctxt stmtContext, s ast.Stmt) {
 
 			// if present, rhs must be a receive operation
 			if rhs != nil {
-				if x, _ := unparen(rhs).(*ast.UnaryExpr); x != nil && x.Op == token.ARROW {
+				if x, _ := unparen(rhs).(*ast.UnaryExpr); x != nil && x.Op == token.LARROW {
 					valid = true
 				}
 			}

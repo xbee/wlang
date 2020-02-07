@@ -62,11 +62,12 @@ const (
 	SHR_ASSIGN     // >>=
 	AND_NOT_ASSIGN // &^=
 
-	LAND  // &&
-	LOR   // ||
-	ARROW // <-
-	INC   // ++
-	DEC   // --
+	LAND   // &&
+	LOR    // ||
+	LARROW // <-
+	RARROW // ->
+	INC    // ++
+	DEC    // --
 
 	EQL    // ==
 	LSS    // <
@@ -208,7 +209,7 @@ var tokens = [...]string{
 	FALLTHROUGH: "fallthrough",
 	FOR:         "for",
 
-	FN:   "fn",
+	FN:     "fn",
 	GO:     "go",
 	GOTO:   "goto",
 	IF:     "if",

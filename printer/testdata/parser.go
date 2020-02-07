@@ -11,6 +11,7 @@ package parser
 
 import (
 	"fmt"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/scanner"
 	"github.com/xbee/wlang/token"
@@ -824,12 +825,12 @@ func (p *parser) parseChanType() *ast.ChanType {
 	dir := ast.SEND | ast.RECV
 	if p.tok == token.CHAN {
 		p.next()
-		if p.tok == token.ARROW {
+		if p.tok == token.LARROW {
 			p.next()
 			dir = ast.SEND
 		}
 	} else {
-		p.expect(token.ARROW)
+		p.expect(token.LARROW)
 		p.expect(token.CHAN)
 		dir = ast.RECV
 	}
@@ -856,7 +857,7 @@ func (p *parser) tryIdentOrType(ellipsisOk bool) ast.Expr {
 		return p.parseInterfaceType()
 	case token.MAP:
 		return p.parseMapType()
-	case token.CHAN, token.ARROW:
+	case token.CHAN, token.LARROW:
 		return p.parseChanType()
 	case token.LPAREN:
 		lparen := p.pos
@@ -1303,7 +1304,7 @@ func (p *parser) parseUnaryExpr(lhs bool) ast.Expr {
 		x := p.parseUnaryExpr(false)
 		return &ast.UnaryExpr{pos, op, p.checkExpr(x)}
 
-	case token.ARROW:
+	case token.LARROW:
 		// channel type or receive expression
 		pos := p.pos
 		p.next()
@@ -1314,7 +1315,7 @@ func (p *parser) parseUnaryExpr(lhs bool) ast.Expr {
 		}
 
 		x := p.parseUnaryExpr(false)
-		return &ast.UnaryExpr{pos, token.ARROW, p.checkExpr(x)}
+		return &ast.UnaryExpr{pos, token.LARROW, p.checkExpr(x)}
 
 	case token.MUL:
 		// pointer type or unary "*" expression
@@ -1409,7 +1410,7 @@ func (p *parser) parseSimpleStmt(labelOk bool) ast.Stmt {
 		p.error(x[0].Pos(), "illegal label declaration")
 		return &ast.BadStmt{x[0].Pos(), colon + 1}
 
-	case token.ARROW:
+	case token.LARROW:
 		// send statement
 		arrow := p.pos
 		p.next() // consume "<-"
@@ -1662,7 +1663,7 @@ func (p *parser) parseCommClause() *ast.CommClause {
 	if p.tok == token.CASE {
 		p.next()
 		lhs := p.parseLhsList()
-		if p.tok == token.ARROW {
+		if p.tok == token.LARROW {
 			// SendStmt
 			if len(lhs) > 1 {
 				p.errorExpected(lhs[0].Pos(), "1 expression")
@@ -1695,7 +1696,7 @@ func (p *parser) parseCommClause() *ast.CommClause {
 				rhs = lhs[0]
 				lhs = nil // there is no lhs
 			}
-			if x, isUnary := rhs.(*ast.UnaryExpr); !isUnary || x.Op != token.ARROW {
+			if x, isUnary := rhs.(*ast.UnaryExpr); !isUnary || x.Op != token.LARROW {
 				p.errorExpected(rhs.Pos(), "send or receive operation")
 				rhs = &ast.BadExpr{rhs.Pos(), rhs.End()}
 			}
@@ -1815,7 +1816,7 @@ func (p *parser) parseStmt() (s ast.Stmt) {
 		// tokens that may start a top-level expression
 		token.IDENT, token.INT, token.FLOAT, token.CHAR, token.STRING, token.FUNC, token.LPAREN, // operand
 		token.LBRACK, token.STRUCT, // composite type
-		token.MUL, token.AND, token.ARROW, token.ADD, token.SUB, token.XOR: // unary operators
+		token.MUL, token.AND, token.LARROW, token.ADD, token.SUB, token.XOR: // unary operators
 		s = p.parseSimpleStmt(true)
 		// because of the required look-ahead, labeled statements are
 		// parsed by parseSimpleStmt - don't expect a semicolon after

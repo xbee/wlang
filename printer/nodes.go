@@ -960,9 +960,9 @@ func (p *printer) expr1(expr ast.Expr, prec1, depth int) {
 		case ast.SEND | ast.RECV:
 			p.print(token.CHAN)
 		case ast.RECV:
-			p.print(token.ARROW, token.CHAN) // x.Arrow and x.Pos() are the same
+			p.print(token.LARROW, token.CHAN) // x.Arrow and x.Pos() are the same
 		case ast.SEND:
-			p.print(token.CHAN, x.Arrow, token.ARROW)
+			p.print(token.CHAN, x.Arrow, token.LARROW)
 		}
 		p.print(blank)
 		p.expr(x.Value)
@@ -1205,7 +1205,7 @@ func (p *printer) stmt(stmt ast.Stmt, nextIsRBrace bool) {
 	case *ast.SendStmt:
 		const depth = 1
 		p.expr0(s.Chan, depth)
-		p.print(blank, s.Arrow, token.ARROW, blank)
+		p.print(blank, s.Arrow, token.LARROW, blank)
 		p.expr0(s.Value, depth)
 
 	case *ast.IncDecStmt:

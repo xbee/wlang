@@ -8,10 +8,11 @@ package types
 
 import (
 	"fmt"
+	"math"
+
 	"github.com/xbee/wlang/ast"
 	"github.com/xbee/wlang/constant"
 	"github.com/xbee/wlang/token"
-	"math"
 )
 
 /*
@@ -93,7 +94,7 @@ func (check *Checker) unary(x *operand, e *ast.UnaryExpr, op token.Token) {
 		x.typ = &Pointer{base: x.typ}
 		return
 
-	case token.ARROW:
+	case token.LARROW:
 		typ, ok := x.typ.Underlying().(*Chan)
 		if !ok {
 			check.invalidOp(x.pos(), "cannot receive from non-channel %s", x)
@@ -1490,7 +1491,7 @@ func (check *Checker) exprInternal(x *operand, e ast.Expr, hint Type) exprKind {
 		if x.mode == invalid {
 			goto Error
 		}
-		if e.Op == token.ARROW {
+		if e.Op == token.LARROW {
 			x.expr = e
 			return statement // receive operations may appear in statement context
 		}

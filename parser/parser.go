@@ -18,12 +18,13 @@ package parser
 
 import (
 	"fmt"
-	"github.com/xbee/wlang/ast"
-	"github.com/xbee/wlang/scanner"
-	"github.com/xbee/wlang/token"
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/xbee/wlang/ast"
+	"github.com/xbee/wlang/scanner"
+	"github.com/xbee/wlang/token"
 )
 
 // The parser structure holds the parser's internal state.
@@ -1013,13 +1014,13 @@ func (p *parser) parseChanType() *ast.ChanType {
 	var arrow token.Pos
 	if p.tok == token.CHAN {
 		p.next()
-		if p.tok == token.ARROW {
+		if p.tok == token.LARROW {
 			arrow = p.pos
 			p.next()
 			dir = ast.SEND
 		}
 	} else {
-		arrow = p.expect(token.ARROW)
+		arrow = p.expect(token.LARROW)
 		p.expect(token.CHAN)
 		dir = ast.RECV
 	}
@@ -1046,7 +1047,7 @@ func (p *parser) tryIdentOrType() ast.Expr {
 		return p.parseInterfaceType()
 	case token.MAP:
 		return p.parseMapType()
-	case token.CHAN, token.ARROW:
+	case token.CHAN, token.LARROW:
 		return p.parseChanType()
 	case token.LPAREN:
 		lparen := p.pos
@@ -1537,7 +1538,7 @@ func (p *parser) parseUnaryExpr(lhs bool) ast.Expr {
 		x := p.parseUnaryExpr(false)
 		return &ast.UnaryExpr{OpPos: pos, Op: op, X: p.checkExpr(x)}
 
-	case token.ARROW:
+	case token.LARROW:
 		// channel type or receive expression
 		arrow := p.pos
 		p.next()
@@ -1581,7 +1582,7 @@ func (p *parser) parseUnaryExpr(lhs bool) ast.Expr {
 		}
 
 		// <-(expr)
-		return &ast.UnaryExpr{OpPos: arrow, Op: token.ARROW, X: p.checkExpr(x)}
+		return &ast.UnaryExpr{OpPos: arrow, Op: token.LARROW, X: p.checkExpr(x)}
 
 	case token.MUL:
 		// pointer type or unary "*" expression
@@ -1726,7 +1727,7 @@ func (p *parser) parseSimpleStmt(mode int) (ast.Stmt, bool) {
 		p.error(colon, "illegal label declaration")
 		return &ast.BadStmt{From: x[0].Pos(), To: colon + 1}, false
 
-	case token.ARROW:
+	case token.LARROW:
 		// send statement
 		arrow := p.pos
 		p.next()
@@ -2065,7 +2066,7 @@ func (p *parser) parseCommClause() *ast.CommClause {
 	if p.tok == token.CASE {
 		p.next()
 		lhs := p.parseLhsList()
-		if p.tok == token.ARROW {
+		if p.tok == token.LARROW {
 			// SendStmt
 			if len(lhs) > 1 {
 				p.errorExpected(lhs[0].Pos(), "1 expression")
@@ -2225,7 +2226,7 @@ func (p *parser) parseStmt() (s ast.Stmt) {
 		// tokens that may start an expression
 		token.IDENT, token.INT, token.FLOAT, token.IMAG, token.CHAR, token.STRING, token.FN, token.LPAREN, // operands
 		token.LBRACK, token.STRUCT, token.MAP, token.CHAN, token.INTERFACE, // composite types
-		token.ADD, token.SUB, token.MUL, token.AND, token.XOR, token.ARROW, token.NOT: // unary operators
+		token.ADD, token.SUB, token.MUL, token.AND, token.XOR, token.LARROW, token.NOT: // unary operators
 		s, _ = p.parseSimpleStmt(labelOk)
 		// because of the required look-ahead, labeled statements are
 		// parsed by parseSimpleStmt - don't expect a semicolon after

@@ -11,11 +11,12 @@ package scanner
 import (
 	"bytes"
 	"fmt"
-	"github.com/xbee/wlang/token"
 	"path/filepath"
 	"strconv"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/xbee/wlang/token"
 )
 
 // An ErrorHandler may be provided to Scanner.Init. If a syntax error is
@@ -903,7 +904,7 @@ scanAgain:
 		case '<':
 			if s.ch == '-' {
 				s.next()
-				tok = token.ARROW
+				tok = token.LARROW
 			} else {
 				tok = s.switch4(token.LSS, token.LEQ, '<', token.SHL, token.SHL_ASSIGN)
 			}
