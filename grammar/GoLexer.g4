@@ -120,7 +120,6 @@ CARET                  : '^';
 STAR                   : '*';
 AMPERSAND              : '&';
 RECEIVE                : '<-';
-
 // Number literals
 
 DECIMAL_LIT            : [1-9] [0-9]*;
